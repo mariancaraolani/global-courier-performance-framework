@@ -1,0 +1,661 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Global Courier Performance Framework</title><style>
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#F5F4F0;color:#1A1A1A}
+.page{max-width:1200px;margin:0 auto;padding:40px 32px}
+.meta{font-size:12px;color:#AAA;margin-bottom:8px}h1{font-size:28px;font-weight:700;margin-bottom:4px}.sub{font-size:16px;color:#777;margin-bottom:24px}
+.tnav{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:24px;border-bottom:2px solid #E0DDD6}
+.tbtn{background:none;border:none;padding:10px 16px;font-size:13px;font-weight:500;cursor:pointer;color:#888;border-bottom:3px solid transparent;margin-bottom:-2px;font-family:inherit;white-space:nowrap}
+.tbtn:hover{color:#1A1A1A}.tbtn.active{color:#1A1A1A;border-bottom-color:#34A853;font-weight:600}
+.tp{display:none}.tp.active{display:block}
+.sl{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#AAA;padding:16px 0 8px}
+.card{background:#fff;border-radius:12px;border:1px solid #E0DDD6;margin-bottom:16px;overflow:hidden}
+.ch{padding:14px 20px;border-bottom:1px solid #F0EEE8;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;cursor:pointer;user-select:none}
+.ch:hover{background:#FAFAF8}
+.ct{font-size:16px;font-weight:700}.cm{font-size:12px;color:#888}.cb{padding:16px 20px}
+.cb.collapsed{display:none}
+table.dt{width:100%;border-collapse:collapse}table.dt td,table.dt th{font-size:13px;padding:8px 12px;border-bottom:1px solid #F5F4F0;vertical-align:top}
+table.dt th{background:#1A1A1A;color:#fff;font-size:12px;font-weight:600;text-align:left;border-bottom:none}
+table.dt tr:last-child td{border-bottom:none}table.dt tr:nth-child(even) td{background:#FAFAF8}
+.ga{background:#EAF3DE;color:#3B6D11;border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;display:inline-block}
+.gb{background:#E6F1FB;color:#185FA5;border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;display:inline-block}
+.gc{background:#FFF9E6;color:#8A4D00;border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;display:inline-block}
+.gd{background:#FCEEE0;color:#7A3500;border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;display:inline-block}
+.ge{background:#F3EAF8;color:#6B2D8B;border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;display:inline-block}
+.rtag{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;white-space:nowrap}
+.rcrit{background:#F3EAF8;color:#6B2D8B}.rh{background:#FDECEA;color:#A32D2D}.rm{background:#FFF0D4;color:#8A4D00}
+.ty{color:#3B6D11;font-weight:600}.tn{color:#AAA}.tw{color:#C0392B;font-weight:600}.tb{color:#185FA5;font-weight:600}
+.no{border-radius:8px;padding:12px 16px;font-size:13px;margin-bottom:16px;line-height:1.6}
+.ni{background:#E6F1FB;color:#185FA5}.nw{background:#FFF9E6;color:#7A5000}.nd{background:#FDECEA;color:#A32D2D}.ns{background:#EAF3DE;color:#3B6D11}
+.stats{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.stat{flex:1;min-width:120px;background:#fff;border:1px solid #E0DDD6;border-radius:10px;padding:16px 20px;text-align:center}
+.stat-val{font-size:28px;font-weight:700;line-height:1}.stat-label{font-size:12px;color:#888;margin-top:4px}
+.stat-val.green{color:#3B6D11}.stat-val.orange{color:#C0392B}.stat-val.blue{color:#185FA5}.stat-val.purple{color:#6B2D8B}
+.arch{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:20px}
+.arch-card{background:#fff;border:1px solid #E0DDD6;border-radius:10px;padding:16px 20px}
+.arch-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#AAA;margin-bottom:6px}
+.arch-title{font-size:14px;font-weight:700;margin-bottom:6px}
+.arch-body{font-size:12px;color:#555;line-height:1.5}
+.grp-card{background:#fff;border-radius:12px;border:1px solid #E0DDD6;margin-bottom:16px;overflow:hidden}
+.grp-head{padding:14px 20px;border-bottom:1px solid #F0EEE8;display:flex;align-items:center;gap:12px;cursor:pointer;user-select:none}
+.grp-head:hover{background:#FAFAF8}
+.grp-title{font-size:15px;font-weight:700}.grp-sub{font-size:12px;color:#888}
+.grp-body{padding:16px 20px;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.grp-body.collapsed{display:none}
+.grp-section-title{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#AAA;margin-bottom:8px}
+.grp-markets{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.grp-market{border-radius:6px;padding:4px 10px;font-size:12px;font-weight:500;border:1px solid}
+.action-row{display:flex;align-items:flex-start;gap:8px;padding:5px 0;font-size:13px;line-height:1.5}
+.action-yes{color:#3B6D11;font-weight:700;flex-shrink:0;font-size:12px}.action-no{color:#C0392B;font-weight:700;flex-shrink:0;font-size:12px}
+.action-note{font-size:11px;color:#888;display:block}
+.risk-row{display:flex;align-items:flex-start;gap:8px;padding:4px 0;font-size:13px;line-height:1.5}
+.risk-dot{color:#C0392B;font-size:10px;margin-top:4px;flex-shrink:0}
+.thr-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-bottom:20px}
+.thr-card{background:#fff;border:1px solid #E0DDD6;border-radius:10px;padding:16px 20px}
+.thr-title{font-size:14px;font-weight:700;margin-bottom:6px}
+.thr-val{font-size:16px;font-weight:700;color:#185FA5;margin-bottom:4px}
+.thr-desc{font-size:12px;color:#555;line-height:1.5}
+.gap-crit{color:#6B2D8B;font-weight:600}.gap-high{color:#C0392B;font-weight:600}.gap-med{color:#8A4D00;font-weight:600}.gap-low{color:#3B6D11;font-weight:600}.gap-none{color:#3B6D11;font-weight:600}
+.esc-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+.esc-card{background:#fff;border:1px solid #E0DDD6;border-radius:10px;padding:16px 20px}
+.esc-title{font-size:14px;font-weight:700;margin-bottom:8px}
+.esc-item{font-size:12px;color:#333;padding:3px 0;line-height:1.5}
+.esc-bold{font-weight:600}
+.reward-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+.rw-card{background:#fff;border:1px solid #E0DDD6;border-radius:10px;padding:16px 20px}
+.rw-title{font-size:14px;font-weight:700;margin-bottom:6px}
+.rw-body{font-size:12px;color:#555;line-height:1.5}
+.rw-highlight{font-weight:600;color:#1A1A1A;display:block;margin-top:4px}
+.rw-note{font-size:11px;color:#888;margin-top:4px}
+.phase-card{background:#fff;border-radius:12px;border:1px solid #E0DDD6;margin-bottom:12px;overflow:hidden}
+.phase-head{padding:12px 20px;border-bottom:1px solid #F0EEE8;display:flex;align-items:center;gap:12px;cursor:pointer;user-select:none}
+.phase-head:hover{background:#FAFAF8}
+.phase-title{font-size:14px;font-weight:700;flex:1}.phase-time{font-size:12px;color:#888}
+.phase-body{padding:12px 20px}.phase-body.collapsed{display:none}
+.phase-item{display:flex;align-items:flex-start;gap:8px;padding:4px 0;font-size:13px;line-height:1.5}
+.phase-marker{color:#185FA5;font-size:11px;margin-top:3px;flex-shrink:0;font-weight:700}
+.chevron{display:inline-block;width:12px;font-size:10px;color:#AAA;transition:transform .15s;flex-shrink:0}
+.chevron.open{transform:rotate(90deg)}
+h2.section{font-size:18px;font-weight:700;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid #E0DDD6}
+h3.subsection{font-size:15px;font-weight:600;margin:16px 0 8px}
+.foot{font-size:12px;color:#AAA;margin-top:32px;padding-top:16px;border-top:2px solid #EEE}
+@media(max-width:768px){.arch,.grp-body,.thr-grid,.esc-grid,.reward-grid{grid-template-columns:1fr}.stats{flex-direction:column}}
+</style></head><body><div class="page">
+<div class="meta">Bolt Food &middot; Central Operations &middot; June 2026 &middot; Draft v1</div>
+<h1>Global Courier Performance Management Framework</h1>
+<div class="sub">Unified framework covering penalisation and rewards across 16 markets &middot; Grouped by regulatory sensitivity</div>
+
+<div class="tnav">
+<button class="tbtn active" onclick="switchTab('overview',this)">Overview</button>
+<button class="tbtn" onclick="switchTab('groups',this)">Market groups</button>
+<button class="tbtn" onclick="switchTab('thresholds',this)">KPI thresholds</button>
+<button class="tbtn" onclick="switchTab('escalation',this)">Escalation</button>
+<button class="tbtn" onclick="switchTab('rewards',this)">Rewards</button>
+<button class="tbtn" onclick="switchTab('groupA',this)">Group A proposal</button>
+<button class="tbtn" onclick="switchTab('compliance',this)">Compliance</button>
+</div>
+
+<!-- ============ OVERVIEW ============ -->
+<div id="tab-overview" class="tp active">
+
+<div class="no ni">Markets are grouped by <b>Implementation Class</b> (reclassification sensitivity), <b>PWD applicability</b>, and <b>supply model</b>. Performance data drives thresholds and intervention intensity within each group, not the grouping itself.</div>
+
+<div class="stats">
+<div class="stat"><div class="stat-val">16</div><div class="stat-label">Markets covered</div></div>
+<div class="stat"><div class="stat-val green">4</div><div class="stat-label">Group A (Class 1)</div></div>
+<div class="stat"><div class="stat-val orange">11</div><div class="stat-label">Groups B/C/D (Class 2)</div></div>
+<div class="stat"><div class="stat-val purple">1</div><div class="stat-label">Group E (Class 3)</div></div>
+<div class="stat"><div class="stat-val blue">16</div><div class="stat-label">Audit responses</div></div>
+</div>
+
+<h2 class="section">Market classification matrix</h2>
+<table class="dt"><thead><tr><th>Market</th><th>Group</th><th>Class</th><th>PWD</th><th>Supply model</th><th>Score risk</th><th>Legal sign-off</th><th>Current AR threshold</th><th>AR automation</th><th>Operational reality</th></tr></thead><tbody>
+<tr><td><b>Azerbaijan</b></td><td><span class="ga">A</span></td><td>1</td><td>No</td><td>Mixed</td><td class="ty">Moderate</td><td class="ty">Yes</td><td>30%</td><td>Partially automated</td><td><span class="ty">No constraint</span></td></tr>
+<tr><td><b>Ghana</b></td><td><span class="ga">A</span></td><td>1</td><td>No</td><td>Mixed</td><td class="ty">Moderate</td><td class="ty">Yes</td><td>50%</td><td>Partially automated</td><td><span class="ty">No constraint</span></td></tr>
+<tr><td><b>Kenya</b></td><td><span class="ga">A</span></td><td>1</td><td>No</td><td>Mixed</td><td class="ty">Moderate</td><td class="ty">Yes</td><td>Bottom 30%</td><td>Partially automated</td><td><span class="ty">No constraint</span></td></tr>
+<tr><td><b>Ukraine</b></td><td><span class="ga">A</span></td><td>1</td><td>No</td><td>Mixed</td><td class="ty">Moderate</td><td class="ty">Yes</td><td>20%</td><td>Manual</td><td><span class="ty">No constraint</span> &mdash; &ldquo;legally we have no restriction&rdquo;</td></tr>
+<tr><td><b>Romania</b></td><td><span class="gb">B</span></td><td>2</td><td><span class="tw">Yes</span></td><td>Fleet-only</td><td class="tw">High</td><td class="tn">No</td><td>60%</td><td>Partially automated</td><td><span style="color:#8A4D00;font-weight:600">GM risk acceptance</span> &mdash; GM gave green light to block above framework despite Class 2/High</td></tr>
+<tr><td><b>Bulgaria</b></td><td><span class="gb">B</span></td><td>2</td><td><span class="tw">Yes</span></td><td>Fleet-only</td><td class="tw">High</td><td class="tn">No</td><td>70%</td><td>Manual</td><td><span style="color:#888">Unknown</span> &mdash; highest AR threshold, fleet-mediated</td></tr>
+<tr><td><b>Estonia</b></td><td><span class="gc">C</span></td><td>2</td><td><span class="tw">Yes</span></td><td>Independent-only</td><td class="tw">High</td><td class="tn">No</td><td>40%</td><td>Partially automated (AI)</td><td><span style="color:#888">No explicit constraint</span> &mdash; but independent-only = highest direct exposure</td></tr>
+<tr><td><b>Latvia</b></td><td><span class="gc">C</span></td><td>2</td><td><span class="tw">Yes</span></td><td>Independent-only</td><td class="tw">High</td><td class="tn">No</td><td>30%</td><td>Manual</td><td><span class="tw">Legal red light on AR rewards</span> &mdash; earnings deductions for multiapping (must stop)</td></tr>
+<tr><td><b>Czech Republic</b></td><td><span class="gd">D</span></td><td>2</td><td><span class="tw">Yes</span></td><td>Mixed</td><td class="tw">High</td><td class="tn">No</td><td>10%/40%</td><td>Fully automated</td><td><span class="tw">Partial constraint</span> &mdash; independent I&#268;O couriers must NOT be blocked for AR</td></tr>
+<tr><td><b>Lithuania</b></td><td><span class="gd">D</span></td><td>2</td><td><span class="tw">Yes</span></td><td>Mixed</td><td class="tw">High</td><td class="tn">No</td><td>40%</td><td>Fully automated</td><td><span class="tw">Earnings deduction</span> &mdash; deducting earnings for multiapping (must stop)</td></tr>
+<tr><td><b>Georgia</b></td><td><span class="gd">D</span></td><td>2</td><td>No</td><td>Mixed</td><td class="tw">High</td><td class="tn">No</td><td>60%</td><td>Partially automated</td><td><span style="color:#8A4D00;font-weight:600">GM risk acceptance</span> &mdash; GM aware and accepts risk of high AR + immediate terminations</td></tr>
+<tr><td><b>Cyprus</b></td><td><span class="gd">D</span></td><td>2</td><td><span class="tw">Yes</span></td><td>Mixed</td><td class="tw">High</td><td class="tn">No</td><td>80%</td><td>Partially automated</td><td><span style="color:#888">Market-specific</span> &mdash; high AR by default, blocks fleet couriers with immediate termination</td></tr>
+<tr><td><b>Malta</b></td><td><span class="gd">D</span></td><td>2</td><td><span class="tw">Yes</span></td><td>Mixed</td><td class="tw">High</td><td class="tn">No</td><td>Fleet-level</td><td>N/A</td><td><span class="tw">Legal constraint</span> &mdash; cannot use courier score (composite metrics), cannot block directly unless fraud. Trying to get AR blocking approval</td></tr>
+<tr><td><b>Slovakia</b></td><td><span class="gd">D</span></td><td>2</td><td><span class="tw">Yes</span></td><td>Mixed</td><td class="tw">High</td><td class="tn">No</td><td>30% (fleet first)</td><td>Partially automated</td><td><span style="color:#888">Fleet-first approach</span></td></tr>
+<tr><td><b>Poland</b></td><td><span class="gd">D</span></td><td>2</td><td><span class="tw">Yes</span></td><td>Mixed</td><td class="tw">High</td><td class="tn">No</td><td>&lt;5-30%</td><td>Partially automated</td><td><span class="tw">Legal constraint</span> &mdash; has limitations to blocking. Uses AI + legal guidance matrix</td></tr>
+<tr><td><b>Portugal</b></td><td><span class="ge">E</span></td><td>3</td><td><span class="tw">Yes</span></td><td>Fleet-only</td><td class="tw">High</td><td class="tn">No</td><td>N/A (no blocking)</td><td>N/A</td><td><span class="tw">Legal hard block</span> &mdash; local legal has NOT approved any comms to couriers. Ongoing reclassification cases</td></tr>
+</tbody></table>
+
+<h2 class="section">Fleet-first principle (Legal & PP)</h2>
+<div class="no nd" style="margin-bottom:16px"><b>The fleet should undertake the decision about the suspension.</b> As long as the suspension is done by the fleet or from the fleet&rsquo;s initiative, the reclassification risk is significantly lower. Bolt may suspend on its own only if the fleet takes no action for 2+ consecutive weeks &mdash; this &ldquo;significantly increases the reclassification risk.&rdquo; Aligned with global &amp; local legal teams.</div>
+
+<h2 class="section">Operational reality: what markets CAN vs CANNOT do</h2>
+<div style="font-size:13px;color:#555;margin-bottom:16px">The regulatory group defines the theoretical boundary. The operational reality determines what each market actually does. Three categories emerge:</div>
+<div class="arch">
+<div class="arch-card" style="border-left:4px solid #8A4D00"><div class="arch-label">Category 1</div><div class="arch-title">GM risk acceptance</div><div class="arch-body"><b>Markets doing MORE than the framework allows</b>, with explicit GM sign-off accepting the reclassification risk.<br><br><b>Romania:</b> Blocks at 60% AR despite Class 2/High. GM gave green light. PP recommended fleet-first approach but Bolt does it directly.<br><b>Georgia:</b> 60% AR + immediate termination for 5+ triggers. GM aware and accepts.</div></div>
+<div class="arch-card" style="border-left:4px solid #C0392B"><div class="arch-label">Category 2</div><div class="arch-title">Legal hard block</div><div class="arch-body"><b>Markets doing LESS than they could</b> because local legal has restricted actions.<br><br><b>Portugal:</b> Local legal has not approved any comms to couriers. No blocking at all.<br><b>Malta:</b> Cannot use courier score (composite metrics). Trying to get approval for direct AR blocking below 50%. Fraud-only blocking currently.<br><b>Poland:</b> Has limitations to blocking. Uses AI + legal guidance matrix.<br><b>Czech Republic:</b> Independent I&#268;O couriers must NOT be blocked for AR.</div></div>
+<div class="arch-card" style="border-left:4px solid #3B6D11"><div class="arch-label">Category 3</div><div class="arch-title">No constraint</div><div class="arch-body"><b>Markets with full operational freedom</b>, either because Class 1 or because local legal has no objection.<br><br><b>Ukraine:</b> &ldquo;Legally we have no restriction of blocking courier for whatever reason we think is suitable.&rdquo;<br><b>Azerbaijan, Ghana, Kenya:</b> Class 1, moderate risk, legal sign-off received for courier score actioning.</div></div>
+</div>
+
+<h2 class="section">Framework architecture</h2>
+<div class="arch">
+<div class="arch-card"><div class="arch-label">Layer 1</div><div class="arch-title">Regulatory group</div><div class="arch-body">Determines what a market can and cannot do. Based on Implementation Class, PWD status, and supply model. 5 groups: A through E, from least to most constrained.</div></div>
+<div class="arch-card"><div class="arch-label">Layer 2</div><div class="arch-title">Escalation ladder</div><div class="arch-body">Standardized warning-to-termination path. Same structure globally, but Group determines whether human review is required and whether fleet is the intermediary.</div></div>
+<div class="arch-card"><div class="arch-label">Layer 3</div><div class="arch-title">KPI thresholds</div><div class="arch-body">Calibrated per market from distribution data. AR, Redispatch, Delays, and Courier Score. The global floor prevents aggressive local thresholds. AR floor: ~28%. Score cap: 33%.</div></div>
+</div>
+</div>
+
+<!-- ============ GROUPS ============ -->
+<div id="tab-groups" class="tp">
+
+<div style="font-size:13px;color:#555;margin-bottom:20px">Each group defines the regulatory boundary for what a market can do. Within each group, the same escalation ladder and KPI thresholds apply.</div>
+
+<!-- GROUP A -->
+<div class="grp-card">
+<div class="grp-head" onclick="toggleCard(this)"><span class="chevron open">&#9654;</span><span class="ga" style="font-size:14px;padding:3px 10px">A</span><div><div class="grp-title">Group A: Class 1 / No PWD / Mixed supply</div><div class="grp-sub">Lowest regulatory constraint. All performance actions permissible.</div></div></div>
+<div class="grp-body">
+<div>
+<div class="grp-section-title">Markets</div>
+<div class="grp-markets">
+<span class="grp-market" style="background:#EAF3DE;border-color:#B0D8B0;color:#2A5A2A">Azerbaijan &#10003;</span>
+<span class="grp-market" style="background:#EAF3DE;border-color:#B0D8B0;color:#2A5A2A">Ghana &#10003;</span>
+<span class="grp-market" style="background:#EAF3DE;border-color:#B0D8B0;color:#2A5A2A">Kenya &#10003;</span>
+<span class="grp-market" style="background:#EAF3DE;border-color:#B0D8B0;color:#2A5A2A">Ukraine &#10003;</span>
+</div>
+<div class="grp-section-title">Permissible actions</div>
+<div class="action-row"><span class="action-yes">YES</span> AR blocking with automated execution</div>
+<div class="action-row"><span class="action-yes">YES</span> Redispatch blocking</div>
+<div class="action-row"><span class="action-yes">YES</span> Delay blocking</div>
+<div class="action-row"><span class="action-yes">YES</span> Courier score blocking (cap: 33%)</div>
+<div class="action-row"><span class="action-yes">YES</span> Multiapping: immediate suspension permissible</div>
+<div class="action-row"><span class="action-yes">YES</span> All reward program types</div>
+<div class="action-row"><span class="action-yes">YES</span> Human review: not required, but recommended<span class="action-note">Good practice</span></div>
+</div>
+<div>
+<div class="grp-section-title">Key risks and gaps</div>
+<div class="risk-row"><span class="risk-dot">&#9679;</span> Ghana courier score threshold (50%) above HQ cap of 33% &mdash; align downward</div>
+<div class="risk-row"><span class="risk-dot">&#9679;</span> Kenya uses percentile-based thresholds (top/bottom 30%) &mdash; unique in portfolio, consider standardizing</div>
+<div class="risk-row"><span class="risk-dot">&#9679;</span> Azerbaijan hourly escalation steps (3h/6h/9h) are non-standard &mdash; simplify to daily</div>
+<div class="risk-row"><span class="risk-dot">&#9679;</span> Ukraine very conservative (20% AR) &mdash; no change needed, but courier score at 15% is below HQ guidance</div>
+<div class="grp-section-title" style="margin-top:16px">Calibrated thresholds</div>
+<table class="dt"><thead><tr><th>Market</th><th>AR</th><th>Redispatch</th><th>Delays</th></tr></thead><tbody>
+<tr><td>Azerbaijan</td><td class="tb">28.57%</td><td class="tb">42.11%</td><td class="tb">25%</td></tr>
+<tr><td>Ghana</td><td class="tb">28.57%</td><td class="tb">33.33%</td><td class="tb">20%</td></tr>
+<tr><td>Kenya</td><td class="tb">28.57%</td><td class="tb">33.33%</td><td class="tb">25%</td></tr>
+<tr><td>Ukraine</td><td class="tb">23.23%</td><td class="tb">40%</td><td class="tb">25%</td></tr>
+</tbody></table>
+</div>
+</div></div>
+
+<!-- GROUP B -->
+<div class="grp-card">
+<div class="grp-head" onclick="toggleCard(this)"><span class="chevron open">&#9654;</span><span class="gb" style="font-size:14px;padding:3px 10px">B</span><div><div class="grp-title">Group B: Class 2 / PWD / Fleet-only</div><div class="grp-sub">Fleet intermediary reduces direct PWD exposure. All actions via fleet channel.</div></div></div>
+<div class="grp-body">
+<div>
+<div class="grp-section-title">Markets</div>
+<div class="grp-markets">
+<span class="grp-market" style="background:#E6F1FB;border-color:#B0C8E8;color:#185FA5">Romania &#10003;</span>
+<span class="grp-market" style="background:#E6F1FB;border-color:#B0C8E8;color:#185FA5">Bulgaria &#10003;</span>
+</div>
+<div class="grp-section-title">Permissible actions</div>
+<div class="action-row"><span class="action-yes">YES</span> All blocking actions via fleet channel</div>
+<div class="action-row"><span class="action-yes">YES</span> All reward programs (fleet-mediated)</div>
+<div class="action-row"><span class="action-yes">YES</span> Human review before blocking<span class="action-note">Mandatory from Dec 2026</span></div>
+<div class="action-row"><span class="action-no">NO</span> Fully automated blocking without human gate (post Dec 2026)</div>
+<div class="action-row"><span class="action-no">NO</span> Direct courier blocking bypassing fleet</div>
+</div>
+<div>
+<div class="grp-section-title">Key risks and gaps</div>
+<div class="risk-row"><span class="risk-dot">&#9679;</span> Romania AR threshold 60% vs framework ~28% &mdash; largest gap in portfolio</div>
+<div class="risk-row"><span class="risk-dot">&#9679;</span> Bulgaria AR threshold 70% &mdash; second highest in all markets</div>
+<div class="risk-row"><span class="risk-dot">&#9679;</span> Both markets need human review gate before Dec 2026</div>
+<div class="grp-section-title" style="margin-top:16px">Calibrated thresholds</div>
+<table class="dt"><thead><tr><th>Market</th><th>AR</th><th>Redispatch</th><th>Delays</th></tr></thead><tbody>
+<tr><td>Romania</td><td class="tb">28.57%</td><td class="tb">33.33%</td><td class="tb">20%</td></tr>
+<tr><td>Bulgaria</td><td class="tb">28.57%</td><td class="tb">33.33%</td><td class="tb">20%</td></tr>
+</tbody></table>
+</div>
+</div></div>
+
+<!-- GROUP C -->
+<div class="grp-card">
+<div class="grp-head" onclick="toggleCard(this)"><span class="chevron">&#9654;</span><span class="gc" style="font-size:14px;padding:3px 10px">C</span><div><div class="grp-title">Group C: Class 2 / PWD / Independent-only</div><div class="grp-sub">Most constrained on rewards. No fleet lever available.</div></div></div>
+<div class="grp-body collapsed">
+<div>
+<div class="grp-section-title">Markets</div>
+<div class="grp-markets">
+<span class="grp-market" style="background:#FFF9E6;border-color:#E8D8A0;color:#8A4D00">Estonia &#10003;</span>
+<span class="grp-market" style="background:#FFF9E6;border-color:#E8D8A0;color:#8A4D00">Latvia &#10003;</span>
+</div>
+<div class="grp-section-title">Permissible actions</div>
+<div class="action-row"><span class="action-yes">YES</span> Direct courier AR blocking with human review</div>
+<div class="action-row"><span class="action-yes">YES</span> Delay blocking with human review</div>
+<div class="action-row"><span class="action-yes">YES</span> Volume or quality-based reward programs</div>
+<div class="action-row"><span class="action-yes">YES</span> Human review before blocking<span class="action-note">Mandatory from Dec 2026</span></div>
+<div class="action-row"><span class="action-no">NO</span> Fleet lever (no fleet supply model)</div>
+<div class="action-row"><span class="action-no">NO</span> Fully automated blocking without human gate</div>
+<div class="action-row"><span class="action-no">NO</span> AR-conditional reward campaigns<span class="action-note">Legal red light in Latvia, risk in Estonia</span></div>
+</div>
+<div>
+<div class="grp-section-title">Key risks and gaps</div>
+<div class="risk-row"><span class="risk-dot">&#9679;</span> Latvia launched earnings deductions for multiapping (Lithuania approach) &mdash; extremely high risk, must stop</div>
+<div class="risk-row"><span class="risk-dot">&#9679;</span> Estonia AI-automated AR blocking &mdash; must confirm human review gate exists</div>
+<div class="risk-row"><span class="risk-dot">&#9679;</span> Estonia AR reward campaign (90% threshold) &mdash; close to requiring specific AR level to earn income</div>
+<div class="risk-row"><span class="risk-dot">&#9679;</span> No defined unblocking process in either market</div>
+<div class="grp-section-title" style="margin-top:16px">Calibrated thresholds</div>
+<table class="dt"><thead><tr><th>Market</th><th>AR</th><th>Redispatch</th><th>Delays</th></tr></thead><tbody>
+<tr><td>Estonia</td><td class="tb">28.57%</td><td class="tb">33.33%</td><td class="tb">20%</td></tr>
+<tr><td>Latvia</td><td class="tb">28.57%</td><td class="tb">33.33%</td><td class="tb">20%</td></tr>
+</tbody></table>
+</div>
+</div></div>
+
+<!-- GROUP D -->
+<div class="grp-card">
+<div class="grp-head" onclick="toggleCard(this)"><span class="chevron">&#9654;</span><span class="gd" style="font-size:14px;padding:3px 10px">D</span><div><div class="grp-title">Group D: Class 2 / PWD (mostly) / Mixed supply</div><div class="grp-sub">Largest group. Fleet-first approach where fleet exists, direct where not.</div></div></div>
+<div class="grp-body collapsed">
+<div>
+<div class="grp-section-title">Markets</div>
+<div class="grp-markets">
+<span class="grp-market" style="background:#FCEEE0;border-color:#E8C0A0;color:#7A3500">Czech Republic &#10003;</span>
+<span class="grp-market" style="background:#FCEEE0;border-color:#E8C0A0;color:#7A3500">Lithuania &#10003;</span>
+<span class="grp-market" style="background:#FCEEE0;border-color:#E8C0A0;color:#7A3500">Georgia &#10003;</span>
+<span class="grp-market" style="background:#FCEEE0;border-color:#E8C0A0;color:#7A3500">Cyprus &#10003;</span>
+<span class="grp-market" style="background:#FCEEE0;border-color:#E8C0A0;color:#7A3500">Malta &#10003;</span>
+<span class="grp-market" style="background:#FCEEE0;border-color:#E8C0A0;color:#7A3500">Slovakia &#10003;</span>
+<span class="grp-market" style="background:#FCEEE0;border-color:#E8C0A0;color:#7A3500">Poland &#10003;</span>
+</div>
+<div class="grp-section-title">Permissible actions</div>
+<div class="action-row"><span class="action-yes">YES</span> Fleet-first blocking approach</div>
+<div class="action-row"><span class="action-yes">YES</span> Direct courier blocking where fleet unavailable</div>
+<div class="action-row"><span class="action-yes">YES</span> All reward program types</div>
+<div class="action-row"><span class="action-yes">YES</span> Human review before blocking<span class="action-note">Mandatory from Dec 2026 (EU markets)</span></div>
+<div class="action-row"><span class="action-no">NO</span> Fully automated blocking without human gate (post Dec 2026)</div>
+<div class="action-row"><span class="action-no">NO</span> Score-based automated blocking (high reclassification risk)<span class="action-note">No legal sign-off</span></div>
+</div>
+<div>
+<div class="grp-section-title">Key risks and gaps</div>
+<div class="risk-row"><span class="risk-dot">&#9679;</span> Cyprus AR threshold 80% with immediate termination for fleet couriers &mdash; most aggressive in entire portfolio. Market-specific: high AR by default</div>
+<div class="risk-row"><span class="risk-dot">&#9679;</span> Georgia AR threshold 60% + immediate termination for multiapping without warnings &mdash; <b>GM accepts risk knowingly</b></div>
+<div class="risk-row"><span class="risk-dot">&#9679;</span> Lithuania earnings deduction for multiapping &mdash; must stop immediately</div>
+<div class="risk-row"><span class="risk-dot">&#9679;</span> Czech Republic + Lithuania: fully automated AR blocking, no manual review</div>
+<div class="risk-row"><span class="risk-dot">&#9679;</span> Czech Republic: independent I&#268;O couriers must NOT be blocked for AR (only fleet couriers)</div>
+<div class="risk-row"><span class="risk-dot">&#9679;</span> Georgia: immediate termination for 5+ triggers without graduated escalation</div>
+<div class="risk-row"><span class="risk-dot">&#9679;</span> Malta: <b>cannot use courier score</b> &mdash; composite metrics not permissible for restricting activity (informal legal position). Can only block for fraud. Trying to get approval for direct AR blocking below 50%</div>
+<div class="risk-row"><span class="risk-dot">&#9679;</span> Poland: has limitations to blocking. Uses AI + legal guidance matrix. Most complex system (4 AR tiers)</div>
+<div class="grp-section-title" style="margin-top:16px">Calibrated thresholds</div>
+<table class="dt"><thead><tr><th>Market</th><th>AR</th><th>Redispatch</th><th>Delays</th></tr></thead><tbody>
+<tr><td>Czech Republic</td><td class="tb">24.29%</td><td class="tb">33.33%</td><td class="tb">20%</td></tr>
+<tr><td>Lithuania</td><td class="tb">28.57%</td><td class="tb">33.33%</td><td class="tb">20%</td></tr>
+<tr><td>Georgia</td><td class="tb">27.55%</td><td class="tb">33.33%</td><td class="tb">12.33%</td></tr>
+<tr><td>Cyprus</td><td class="tb">28.57%</td><td class="tb">33.33%</td><td class="tb">20%</td></tr>
+<tr><td>Malta</td><td class="tb">28.57%</td><td class="tb">33.33%</td><td class="tb">20%</td></tr>
+<tr><td>Slovakia</td><td class="tb">28.57%</td><td class="tb">33.33%</td><td class="tb">20%</td></tr>
+<tr><td>Poland</td><td class="tb">8.11%</td><td class="tb">71.43%</td><td class="tb">25%</td></tr>
+</tbody></table>
+</div>
+</div></div>
+
+<!-- GROUP E -->
+<div class="grp-card">
+<div class="grp-head" onclick="toggleCard(this)"><span class="chevron">&#9654;</span><span class="ge" style="font-size:14px;padding:3px 10px">E</span><div><div class="grp-title">Group E: Class 3 / PWD / Fleet-only</div><div class="grp-sub">Highest sensitivity. Reward-only framework pending legal clearance.</div></div></div>
+<div class="grp-body collapsed">
+<div>
+<div class="grp-section-title">Markets</div>
+<div class="grp-markets">
+<span class="grp-market" style="background:#F3EAF8;border-color:#D0B0E0;color:#6B2D8B">Portugal &#10003;</span>
+</div>
+<div class="grp-section-title">Permissible actions</div>
+<div class="action-row"><span class="action-yes">YES</span> Reward programs (positive incentives only)</div>
+<div class="action-row"><span class="action-no">NO</span> Performance blocking of any kind<span class="action-note">Under legal review</span></div>
+<div class="action-row"><span class="action-no">NO</span> Score-based actions</div>
+<div class="action-row"><span class="action-no">NO</span> Automated actions of any kind</div>
+</div>
+<div>
+<div class="grp-section-title">Key risks and gaps</div>
+<div class="risk-row"><span class="risk-dot">&#9679;</span> AR declined from 66.7% to 42.4% (Nov 2024 to Nov 2025) with no blocking in place</div>
+<div class="risk-row"><span class="risk-dot">&#9679;</span> 100% fleet-managed model &mdash; all actions must go through fleet partners</div>
+<div class="risk-row"><span class="risk-dot">&#9679;</span> Existing &lsquo;Negative Framework&rsquo; for platform work &mdash; strictest regulatory environment</div>
+<div class="risk-row"><span class="risk-dot">&#9679;</span> Reward framework is the only lever available pending legal clearance</div>
+<div class="grp-section-title" style="margin-top:16px">Calibrated thresholds (for when legal clearance obtained)</div>
+<table class="dt"><thead><tr><th>Market</th><th>AR</th><th>Redispatch</th><th>Delays</th></tr></thead><tbody>
+<tr><td>Portugal</td><td class="tb">14.63%</td><td class="tb">50%</td><td class="tb">25%</td></tr>
+</tbody></table>
+</div>
+</div></div>
+</div>
+
+<!-- ============ THRESHOLDS ============ -->
+<div id="tab-thresholds" class="tp">
+
+<div class="no nw"><b>Threshold methodology:</b> Proposed AR thresholds use min(market p10, global p10 of 27.55%). These represent the <b>compliance-safe floor</b> &mdash; the lowest AR at which a courier can be blocked without excessive reclassification risk. Markets currently blocking well above this floor (e.g. Romania at 60%) are capturing real performance value from blocking, but at higher legal risk. The &ldquo;Trade-off&rdquo; column reflects this tension.</div>
+
+<h2 class="section">AR threshold: current vs proposed</h2>
+<p style="font-size:13px;color:#555;margin-bottom:16px">AR threshold is the primary KPI for courier performance. The proposed thresholds represent the <b>compliance-safe maximum</b> for blocking. Markets blocking above this level are getting real supply value (couriers between the proposed threshold and current threshold are delivering orders) but carrying elevated reclassification risk. Before reducing any threshold, a supply impact analysis is needed to quantify what performance would be lost.</p>
+
+<table class="dt"><thead><tr><th>Market</th><th>Group</th><th>Current AR</th><th>Proposed AR</th><th>Trade-off</th><th>Proposed Redispatch</th><th>Proposed Delay</th><th>Score</th></tr></thead><tbody>
+<tr><td><b>Cyprus</b></td><td><span class="gd">D</span></td><td>80%</td><td class="tb">28.57%</td><td><span style="color:#6B2D8B;font-weight:600">High value at risk</span><br><span style="font-size:11px;color:#888">51pp of blocking range delivering supply value. Immediate termination escalation adds legal risk. Market-specific: AR naturally high</span></td><td>33.33%</td><td>20%</td><td>Case-based &rarr; 33%</td></tr>
+<tr><td><b>Bulgaria</b></td><td><span class="gb">B</span></td><td>70%</td><td class="tb">28.57%</td><td><span style="color:#6B2D8B;font-weight:600">High value at risk</span><br><span style="font-size:11px;color:#888">41pp of blocking range. Fleet-mediated = lower direct risk. Supply impact analysis needed before reducing</span></td><td>33.33%</td><td>20%</td><td>N/A &rarr; 33%</td></tr>
+<tr><td><b>Romania</b></td><td><span class="gb">B</span></td><td>60%</td><td class="tb">28.57%</td><td><span style="color:#6B2D8B;font-weight:600">High value at risk</span><br><span style="font-size:11px;color:#888">31pp of blocking range. AR improved after blocking was introduced. GM accepted the risk. Supply impact of couriers between 28-60% needs quantification</span></td><td>33.33%</td><td>20%</td><td>N/A &rarr; 33%</td></tr>
+<tr><td><b>Georgia</b></td><td><span class="gd">D</span></td><td>60%</td><td class="tb">27.55%</td><td><span style="color:#6B2D8B;font-weight:600">High value at risk</span><br><span style="font-size:11px;color:#888">32pp of blocking range. GM accepts risk. Non-EU market = less PWD pressure but still Class 2</span></td><td>33.33%</td><td>12.33%</td><td>N/A &rarr; 33%</td></tr>
+<tr><td><b>Ghana</b></td><td><span class="ga">A</span></td><td>50%</td><td class="tb">28.57%</td><td><span style="color:#C0392B;font-weight:600">Moderate value at risk</span><br><span style="font-size:11px;color:#888">21pp of blocking range. Class 1 = low legal risk. Can maintain higher threshold if supply impact justifies it</span></td><td>33.33%</td><td>20%</td><td>50% &rarr; 33%</td></tr>
+<tr><td><b>Estonia</b></td><td><span class="gc">C</span></td><td>40%</td><td class="tb">28.57%</td><td><span style="color:#8A4D00;font-weight:600">Moderate value at risk</span><br><span style="font-size:11px;color:#888">11pp of blocking range. Independent-only = highest direct exposure. AR improved from 61.8% to 67% with combined blocking + rewards</span></td><td>33.33%</td><td>20%</td><td>N/A &rarr; 33%</td></tr>
+<tr><td><b>Lithuania</b></td><td><span class="gd">D</span></td><td>40%</td><td class="tb">28.57%</td><td><span style="color:#8A4D00;font-weight:600">Moderate value at risk</span><br><span style="font-size:11px;color:#888">11pp of blocking range. Fully automated = higher compliance urgency than the supply question</span></td><td>33.33%</td><td>20%</td><td>N/A &rarr; 33%</td></tr>
+<tr><td><b>Kenya</b></td><td><span class="ga">A</span></td><td>Bottom 30%</td><td class="tb">28.57%</td><td><span style="color:#8A4D00;font-weight:600">Needs standardisation</span><br><span style="font-size:11px;color:#888">Percentile-based approach is unique. Need to convert to absolute threshold for cross-market comparison</span></td><td>33.33%</td><td>25%</td><td>Bottom 30% &rarr; 33%</td></tr>
+<tr><td><b>Azerbaijan</b></td><td><span class="ga">A</span></td><td>30%</td><td class="tb">28.57%</td><td><span style="color:#3B6D11;font-weight:600">Minimal change</span><br><span style="font-size:11px;color:#888">Only 1.4pp difference. Already near proposed threshold</span></td><td>42.11%</td><td>25%</td><td>30% (local)</td></tr>
+<tr><td><b>Latvia</b></td><td><span class="gc">C</span></td><td>30%</td><td class="tb">28.57%</td><td><span style="color:#3B6D11;font-weight:600">Minimal change</span><br><span style="font-size:11px;color:#888">Only 1.4pp difference. Already near proposed threshold</span></td><td>33.33%</td><td>20%</td><td>N/A &rarr; 33%</td></tr>
+<tr><td><b>Slovakia</b></td><td><span class="gd">D</span></td><td>30% (fleet first)</td><td class="tb">28.57%</td><td><span style="color:#3B6D11;font-weight:600">Minimal change</span><br><span style="font-size:11px;color:#888">Fleet-first approach already compliant in structure</span></td><td>33.33%</td><td>20%</td><td>Verif. &rarr; 33%</td></tr>
+<tr><td><b>Czech Republic</b></td><td><span class="gd">D</span></td><td>10%/40%</td><td class="tb">24.29%</td><td><span style="color:#8A4D00;font-weight:600">Split approach</span><br><span style="font-size:11px;color:#888">Individual threshold (10%) is below proposed &mdash; too conservative. Fleet threshold (40%) is above. Independent I&#268;O couriers cannot be blocked for AR at all</span></td><td>33.33%</td><td>20%</td><td>Score-based &rarr; 33%</td></tr>
+<tr><td><b>Ukraine</b></td><td><span class="ga">A</span></td><td>20%</td><td class="tb">23.23%</td><td><span style="color:#3B6D11;font-weight:600">Already below</span><br><span style="font-size:11px;color:#888">Current threshold is stricter than proposed. Could raise to 23.23% if supply value justifies it</span></td><td>40%</td><td>25%</td><td>15% (local)</td></tr>
+<tr><td><b>Poland</b></td><td><span class="gd">D</span></td><td>&lt;5-30%</td><td class="tb">8.11%</td><td><span style="color:#3B6D11;font-weight:600">Aligned</span><br><span style="font-size:11px;color:#888">Uses 4-tier system. Legal limitations apply. Already conservative with manual review</span></td><td>71.43%</td><td>25%</td><td>Verif. &rarr; 33%</td></tr>
+<tr><td><b>Malta</b></td><td><span class="gd">D</span></td><td>Fleet-level</td><td class="tb">28.57%</td><td><span style="color:#C0392B;font-weight:600">Blocked by legal</span><br><span style="font-size:11px;color:#888">No direct AR blocking approved yet. Cannot use courier score (composite metrics). Fraud-only blocking. Trying to get approval for &lt;50% AR</span></td><td>33.33%</td><td>20%</td><td>N/A (not permissible)</td></tr>
+<tr><td><b>Portugal</b></td><td><span class="ge">E</span></td><td>N/A</td><td class="tb">14.63%</td><td><span style="color:#C0392B;font-weight:600">No blocking</span><br><span style="font-size:11px;color:#888">Local legal has not approved any performance blocking or comms to couriers. Reward-only market. Fleet proactive blocks are the only lever</span></td><td>50%</td><td>25%</td><td>N/A</td></tr>
+</tbody></table>
+
+<h2 class="section">Global threshold standards</h2>
+<div class="thr-grid">
+<div class="thr-card"><div class="thr-title">Acceptance Rate</div><div class="thr-val">Floor: min(market p10, 27.55%)</div><div class="thr-desc">No market should block above this threshold. Markets currently above must reduce in phases. Minimum order count: 10-20 proposed orders/week.</div></div>
+<div class="thr-card"><div class="thr-title">Redispatch Rate</div><div class="thr-val">Standard: ~33%</div><div class="thr-desc">Percentage-based, not absolute order count. Markets using order count (Georgia) should convert. Minimum: 10+ delivered orders/week.</div></div>
+<div class="thr-card"><div class="thr-title">Delays</div><div class="thr-val">Standard: 20-25%</div><div class="thr-desc">Percentage of orders with 10+ min late delivery. Threshold varies by market distribution. Must be paired with minimum volume filter.</div></div>
+<div class="thr-card"><div class="thr-title">Courier Score</div><div class="thr-val">HQ cap: 33%</div><div class="thr-desc">No market should use a threshold above 33%. Markets with higher local thresholds (Ghana 50%) must align. No legal sign-off yet for Class 2 markets.</div></div>
+</div>
+</div>
+
+<!-- ============ ESCALATION ============ -->
+<div id="tab-escalation" class="tp">
+
+<div class="no ni"><b>Key principle from the Suspension &amp; Termination Framework:</b> Couriers must receive a warning before suspension, with the exception of safety and fraud-related suspensions. Termination requires demonstrated repeated breach of terms (P2B regulation). The framework must be applied uniformly regardless of executing party or market.</div>
+
+<h2 class="section">Standard escalation ladder</h2>
+<table class="dt"><thead><tr><th>Step</th><th>Description</th><th>Applicability</th><th>Duration</th><th>Human review</th></tr></thead><tbody>
+<tr><td><b>1. Education</b></td><td>In-app modal or push notification explaining the metric and expected behaviour. No account restriction.</td><td>All groups</td><td>Immediate</td><td>Not required</td></tr>
+<tr><td><b>2. Warning</b></td><td>Formal warning via email + push. Recorded on courier profile. Must precede any suspension (PWD requirement for Class 2+).</td><td>All groups</td><td>Persistent on profile</td><td>Recommended</td></tr>
+<tr><td><b>3. Short suspension</b></td><td>1-3 day temporary block. Courier can log in but cannot go online. Automated comms via Braze.</td><td>Groups A-D</td><td>1-3 days</td><td>Required for Class 2 (Dec 2026)</td></tr>
+<tr><td><b>4. Medium suspension</b></td><td>5-7 day temporary block. Same mechanics. Applied after repeat offence.</td><td>Groups A-D</td><td>5-7 days</td><td>Required for Class 2 (Dec 2026)</td></tr>
+<tr><td><b>5. Extended suspension</b></td><td>10-14 day block. Reserved for serious repeat offenders or escalated cases. Requires OPS review.</td><td>Groups A-D</td><td>10-14 days</td><td>Required</td></tr>
+<tr><td><b>6. Termination</b></td><td>Account permanently deactivated. Must be preceded by at least one warning or suspension (P2B). Safety/fraud exceptions apply.</td><td>Groups A-D</td><td>Permanent</td><td>Required</td></tr>
+</tbody></table>
+
+<h2 class="section">Group-specific execution rules</h2>
+<div class="esc-grid">
+<div class="esc-card"><div class="esc-title"><span class="ga">A</span> Group A execution</div>
+<div class="esc-item"><span class="esc-bold">Execution:</span> Direct or via fleet</div>
+<div class="esc-item"><span class="esc-bold">Human review:</span> Recommended but not required</div>
+<div class="esc-item"><span class="esc-bold">Automation:</span> Full automation permissible</div>
+<div class="esc-item"><span class="esc-bold">Immediate termination:</span> Permitted for safety/fraud</div>
+<div class="esc-item" style="color:#888;margin-top:6px">Simplest execution path. Local OPS has full autonomy.</div>
+</div>
+<div class="esc-card"><div class="esc-title"><span class="gb">B</span> Group B execution</div>
+<div class="esc-item"><span class="esc-bold">Execution:</span> Via fleet partner only</div>
+<div class="esc-item"><span class="esc-bold">Human review:</span> Mandatory from Dec 2026</div>
+<div class="esc-item"><span class="esc-bold">Automation:</span> Semi-automated (flag + human confirm)</div>
+<div class="esc-item"><span class="esc-bold">Fleet communication:</span> Fleet partner warns courier, fleet partner executes block</div>
+<div class="esc-item" style="color:#888;margin-top:6px">Fleet as intermediary reduces direct PWD exposure.</div>
+</div>
+<div class="esc-card"><div class="esc-title"><span class="gc">C</span> Group C execution</div>
+<div class="esc-item"><span class="esc-bold">Execution:</span> Direct to courier</div>
+<div class="esc-item"><span class="esc-bold">Human review:</span> Mandatory from Dec 2026</div>
+<div class="esc-item"><span class="esc-bold">Automation:</span> Semi-automated (flag + human confirm)</div>
+<div class="esc-item"><span class="esc-bold">Appeals:</span> Must have documented unblocking criteria</div>
+<div class="esc-item" style="color:#888;margin-top:6px">Highest direct exposure. Every suspension faces the courier directly with no fleet buffer.</div>
+</div>
+<div class="esc-card"><div class="esc-title"><span class="gd">D</span> Group D execution</div>
+<div class="esc-item"><span class="esc-bold">Execution:</span> Fleet-first, direct where no fleet</div>
+<div class="esc-item"><span class="esc-bold">Human review:</span> Mandatory from Dec 2026 (EU markets)</div>
+<div class="esc-item"><span class="esc-bold">Automation:</span> Semi-automated for EU, full for non-EU (Georgia)</div>
+<div class="esc-item"><span class="esc-bold">Dual path:</span> Fleet couriers through fleet, independents directly</div>
+<div class="esc-item" style="color:#888;margin-top:6px">Most complex execution. Must support both fleet and independent paths simultaneously.</div>
+</div>
+</div>
+
+<h2 class="section">Unblocking process</h2>
+<p style="font-size:13px;color:#555;margin-bottom:12px">Standardized unblocking criteria must be defined and documented for every market.</p>
+<table class="dt"><thead><tr><th>Criterion</th><th>Standard</th><th>Reference</th></tr></thead><tbody>
+<tr><td>Documented unblocking criteria</td><td>Required for all markets</td><td>Romania: CS unblocking criteria are documented (KB + blocking sheet conditions)</td></tr>
+<tr><td>OPS unblocking process</td><td>Defined criteria + review of performance history</td><td>Romania: detailed process based on offence seriousness, performance history, fleet relationship</td></tr>
+<tr><td>CS unblocking authority</td><td>Only for clearly defined cases</td><td>Romania: 3 specific conditions documented in KB</td></tr>
+<tr><td>Safety-related blocks</td><td>No CS unblocking &mdash; escalate to OPS/Safety team</td><td>Romania: CS escalates safety-related blocks</td></tr>
+<tr><td>Appeals route</td><td>Courier must have access to appeal any suspension (PWD)</td><td>Latvia/Estonia: no defined process &mdash; must be created</td></tr>
+</tbody></table>
+</div>
+
+<!-- ============ REWARDS ============ -->
+<div id="tab-rewards" class="tp">
+
+<div class="no nw"><b>Reward design principle:</b> Rewards must be framed as positive incentives, not disguised penalties. An AR-conditional bonus that effectively punishes couriers for low AR through reward denial carries the same reclassification risk as a block in sensitive markets.</div>
+
+<h2 class="section">Reward permissibility by group</h2>
+<table class="dt"><thead><tr><th>Reward type</th><th>Group A</th><th>Group B</th><th>Group C</th><th>Group D</th><th>Group E</th></tr></thead><tbody>
+<tr><td><b>AR-based bonus</b></td><td class="ty">Allowed</td><td style="color:#8A4D00">Via fleet, legal review</td><td class="tw">Red light / At risk</td><td style="color:#8A4D00">Allowed, legal review</td><td class="tw">Via fleet only, legal</td></tr>
+<tr><td><b>Volume-based bonus</b></td><td class="ty">Allowed</td><td class="ty">Allowed (fleet)</td><td class="ty">Allowed</td><td class="ty">Allowed</td><td class="ty">Allowed (via fleet)</td></tr>
+<tr><td><b>Quality-based bonus</b></td><td class="ty">Allowed</td><td class="ty">Allowed (fleet)</td><td class="ty">Allowed</td><td class="ty">Allowed</td><td style="color:#8A4D00">Legal review</td></tr>
+<tr><td><b>Do X Get Y campaigns</b></td><td class="ty">Allowed</td><td class="ty">Allowed (fleet ideal)</td><td class="ty">Allowed (volume only)</td><td class="ty">Allowed</td><td class="ty">Allowed (via fleet)</td></tr>
+<tr><td><b>Gamification</b></td><td class="ty">Allowed</td><td class="ty">Allowed</td><td style="color:#8A4D00">Caution &mdash; may imply control</td><td class="ty">Allowed</td><td class="tw">Legal review</td></tr>
+<tr><td><b>Physical rewards</b></td><td class="ty">Allowed</td><td class="ty">Allowed</td><td class="ty">Allowed</td><td class="ty">Allowed</td><td class="ty">Allowed</td></tr>
+</tbody></table>
+
+<h2 class="section">Current reward landscape</h2>
+<table class="dt"><thead><tr><th>Market</th><th>Group</th><th>Active</th><th>Type</th><th>Key detail</th></tr></thead><tbody>
+<tr><td><b>Ghana</b></td><td><span class="ga">A</span></td><td class="ty">Yes</td><td>Fleet-funded Do X Get Y</td><td>Fleet partners fund own campaigns via fleet portal</td></tr>
+<tr><td><b>Azerbaijan</b></td><td><span class="ga">A</span></td><td class="ty">Yes</td><td>Engagement + AR%</td><td>Aim: increase engagement and AR</td></tr>
+<tr><td><b>Kenya</b></td><td><span class="ga">A</span></td><td class="tn">No</td><td>&mdash;</td><td>Fuel rewards would be effective (fuel prices up)</td></tr>
+<tr><td><b>Ukraine</b></td><td><span class="ga">A</span></td><td class="tn">No</td><td>&mdash;</td><td>Merch, perks, higher commission, features suggested</td></tr>
+<tr><td><b>Romania</b></td><td><span class="gb">B</span></td><td class="ty">Yes</td><td>Ad hoc local campaigns</td><td>Based on engagement, experience, performance &mdash; no recurrence</td></tr>
+<tr><td><b>Bulgaria</b></td><td><span class="gb">B</span></td><td class="tn">No</td><td>&mdash;</td><td>Gamification + financial incentives suggested</td></tr>
+<tr><td><b>Estonia</b></td><td><span class="gc">C</span></td><td class="ty">Yes</td><td>AR campaign (90% + 10 orders = &euro;10)</td><td>AR improved 61.8% to 67% &mdash; but 90% threshold is legally risky</td></tr>
+<tr><td><b>Latvia</b></td><td><span class="gc">C</span></td><td class="tn">No</td><td>&mdash;</td><td>Wanted AR campaigns but <b>legal red light</b></td></tr>
+<tr><td><b>Czech Republic</b></td><td><span class="gd">D</span></td><td class="ty">Yes</td><td>Bonus connected to AR</td><td>Needs legal review for Class 2 compliance</td></tr>
+<tr><td><b>Lithuania</b></td><td><span class="gd">D</span></td><td class="ty">Yes</td><td>Rating campaigns (testing)</td><td>Encouraging thumbs up/down &mdash; in testing phase</td></tr>
+<tr><td><b>Georgia</b></td><td><span class="gd">D</span></td><td class="ty">Yes</td><td>Weekly AR campaign (70% + 1 order)</td><td>Cash bonus + branded raincoat &mdash; 70% threshold may penalize through denial</td></tr>
+<tr><td><b>Cyprus</b></td><td><span class="gd">D</span></td><td class="tn">No</td><td>&mdash;</td><td>Uses AI for performance management</td></tr>
+<tr><td><b>Malta</b></td><td><span class="gd">D</span></td><td class="ty">Yes</td><td>+&euro;1/order (retail, fleet)</td><td>Weekly, paid as manual adjustments to fleet</td></tr>
+<tr><td><b>Slovakia</b></td><td><span class="gd">D</span></td><td class="tn">No</td><td>&mdash;</td><td>Monetary rewards and raffles not effective per local team</td></tr>
+<tr><td><b>Poland</b></td><td><span class="gd">D</span></td><td class="ty">Yes</td><td>ENG, ACT, RCT campaigns</td><td>Traits tested with no incremental gains</td></tr>
+<tr><td><b>Portugal</b></td><td><span class="ge">E</span></td><td class="tn">No</td><td>&mdash;</td><td>Fleet-managed campaigns only &mdash; couriers lack progress visibility</td></tr>
+</tbody></table>
+
+
+</div>
+
+<!-- ============ GROUP A PROPOSAL ============ -->
+<div id="tab-groupA" class="tp">
+
+<div class="no ni">Data-backed framework proposal for Group A markets (Class 1, no PWD, mixed supply). Thresholds derived from 3-month AR, redispatch, and delays 20min+ distributions with quality inflection analysis. Source: Databricks, Mar 24 &ndash; Jun 22 2026, couriers with 10+ proposed orders and at least 1 delivery.</div>
+
+<div class="stats">
+<div class="stat"><div class="stat-val green">4</div><div class="stat-label">Markets</div></div>
+<div class="stat"><div class="stat-val">23,355</div><div class="stat-label">Active couriers (3m)</div></div>
+<div class="stat"><div class="stat-val">3.5M</div><div class="stat-label">Orders (3m)</div></div>
+<div class="stat"><div class="stat-val green">Moderate</div><div class="stat-label">Legal risk</div></div>
+</div>
+
+<h2 class="section">Market distributions (3 months)</h2>
+<p style="font-size:13px;color:#555;margin-bottom:12px"><b>AR threshold formula:</b> min(market p10, global p10 of 27.55%). If a market&rsquo;s p10 is above the global p10, we use the global floor. If below, we use the market&rsquo;s own p10. The 28.57% value from the courier score tool is derived from this formula. <b>Quality metric:</b> late delivery 10min+ (the primary component of courier at fault bad orders). <b>Redispatch &amp; delays:</b> p95 used to identify the 5% worst-performing couriers.</p>
+<table class="dt"><thead><tr><th>Market</th><th>Couriers</th><th>Orders</th><th>AR p10</th><th>Current AR</th><th>Proposed AR</th><th>Redisp p95</th><th>Delay 20m+ p95</th><th>Late 10m+ p95</th><th>Score threshold</th></tr></thead><tbody>
+<tr><td><b>Azerbaijan</b></td><td>2,935</td><td>482,304</td><td>43.8%</td><td>30%</td><td class="tb">28.57%</td><td>22.2%</td><td>17.2%</td><td>29.2%</td><td>30% (local)</td></tr>
+<tr><td><b>Ghana</b></td><td>4,418</td><td>1,174,921</td><td>51.4%</td><td>50%</td><td class="tb">28.57%</td><td>17.6%</td><td>17.9%</td><td>32.0%</td><td>50% &rarr; 33%</td></tr>
+<tr><td><b>Kenya</b></td><td>2,269</td><td>269,030</td><td>63.6%</td><td>Bottom 30%</td><td class="tb">28.57%</td><td>16.0%</td><td>25.0%</td><td>36.4%</td><td>Bottom 30% (local)</td></tr>
+<tr><td><b>Ukraine</b></td><td>13,733</td><td>1,587,179</td><td>41.5%</td><td>20%</td><td class="tb">23.23%</td><td>21.4%</td><td>12.5%</td><td>25.0%</td><td>15% (local)</td></tr>
+</tbody></table>
+
+<h2 class="section">AR quality inflection per market (3 months)</h2>
+<p style="font-size:13px;color:#555;margin-bottom:12px">How does late delivery 10min+ degrade as AR drops? Redispatch and delay 20min+ shown at p95 (the 5% worst couriers in each AR band).</p>
+<table class="dt"><thead><tr><th>Market</th><th>AR band</th><th>Couriers</th><th>Orders</th><th>% orders</th><th>Avg late delivery 10min+</th><th>Redispatch p95</th><th>Delay 20min+ p95</th></tr></thead><tbody>
+<tr style="background:#FDECEA"><td><b>Azerbaijan</b></td><td>&lt;20%</td><td>16</td><td>255</td><td>0.1%</td><td class="tw">20.7%</td><td>38.3%</td><td>41.7%</td></tr>
+<tr style="background:#FFF0D4"><td>Azerbaijan</td><td>20-30%</td><td>62</td><td>2,140</td><td>0.4%</td><td>11.4%</td><td>54.1%</td><td>16.6%</td></tr>
+<tr><td>Azerbaijan</td><td>30-40%</td><td>131</td><td>13,208</td><td>2.7%</td><td>11.4%</td><td>25.0%</td><td>22.0%</td></tr>
+<tr><td>Azerbaijan</td><td>40-50%</td><td>224</td><td>33,131</td><td>6.9%</td><td>10.5%</td><td>31.4%</td><td>20.0%</td></tr>
+<tr><td>Azerbaijan</td><td>50-60%</td><td>363</td><td>53,845</td><td>11.2%</td><td>10.2%</td><td>24.9%</td><td>20.8%</td></tr>
+<tr><td>Azerbaijan</td><td>60-80%</td><td>917</td><td>146,066</td><td>30.3%</td><td>11.6%</td><td>22.3%</td><td>18.2%</td></tr>
+<tr><td>Azerbaijan</td><td>80%+</td><td>1,222</td><td>233,659</td><td>48.4%</td><td>10.2%</td><td>13.8%</td><td>13.0%</td></tr>
+<tr><td colspan="8" style="border-bottom:2px solid #E0DDD6"></td></tr>
+<tr style="background:#FFF0D4"><td><b>Ghana</b></td><td>20-30%</td><td>29</td><td>1,235</td><td>0.1%</td><td>15.3%</td><td>33.3%</td><td>46.0%</td></tr>
+<tr style="background:#FFF0D4"><td>Ghana</td><td>30-40%</td><td>86</td><td>8,109</td><td>0.7%</td><td>14.4%</td><td>30.0%</td><td>27.7%</td></tr>
+<tr><td>Ghana</td><td>40-50%</td><td>224</td><td>28,968</td><td>2.5%</td><td>14.1%</td><td>28.6%</td><td>35.9%</td></tr>
+<tr><td>Ghana</td><td>50-60%</td><td>584</td><td>141,968</td><td>12.1%</td><td>12.7%</td><td>24.9%</td><td>20.0%</td></tr>
+<tr><td>Ghana</td><td>60-80%</td><td>1,726</td><td>490,823</td><td>41.8%</td><td>13.0%</td><td>16.6%</td><td>16.7%</td></tr>
+<tr><td>Ghana</td><td>80%+</td><td>1,763</td><td>503,806</td><td>42.9%</td><td>13.6%</td><td>13.0%</td><td>16.1%</td></tr>
+<tr><td colspan="8" style="border-bottom:2px solid #E0DDD6"></td></tr>
+<tr style="background:#FFF0D4"><td><b>Kenya</b></td><td>30-40%</td><td>17</td><td>236</td><td>0.1%</td><td class="tw">21.7%</td><td>33.7%</td><td>30.7%</td></tr>
+<tr><td>Kenya</td><td>40-50%</td><td>41</td><td>807</td><td>0.3%</td><td style="color:#8A4D00">24.4%</td><td>28.6%</td><td>50.0%</td></tr>
+<tr><td>Kenya</td><td>50-60%</td><td>93</td><td>2,381</td><td>0.9%</td><td>15.7%</td><td>23.1%</td><td>28.6%</td></tr>
+<tr><td>Kenya</td><td>60-80%</td><td>636</td><td>38,655</td><td>14.4%</td><td>16.8%</td><td>20.0%</td><td>28.6%</td></tr>
+<tr><td>Kenya</td><td>80%+</td><td>1,477</td><td>226,927</td><td>84.4%</td><td>13.2%</td><td>12.5%</td><td>18.7%</td></tr>
+<tr><td colspan="8" style="border-bottom:2px solid #E0DDD6"></td></tr>
+<tr style="background:#FDECEA"><td><b>Ukraine</b></td><td>&lt;20%</td><td>194</td><td>4,630</td><td>0.3%</td><td class="tw">12.1%</td><td>47.0%</td><td>50.0%</td></tr>
+<tr style="background:#FFF0D4"><td>Ukraine</td><td>20-30%</td><td>398</td><td>24,588</td><td>1.5%</td><td>9.1%</td><td>40.0%</td><td>33.3%</td></tr>
+<tr><td>Ukraine</td><td>30-40%</td><td>627</td><td>56,706</td><td>3.6%</td><td>8.5%</td><td>33.3%</td><td>18.5%</td></tr>
+<tr><td>Ukraine</td><td>40-50%</td><td>961</td><td>104,846</td><td>6.6%</td><td>7.9%</td><td>32.8%</td><td>16.7%</td></tr>
+<tr><td>Ukraine</td><td>50-60%</td><td>1,487</td><td>167,847</td><td>10.6%</td><td>8.2%</td><td>26.8%</td><td>14.3%</td></tr>
+<tr><td>Ukraine</td><td>60-80%</td><td>4,158</td><td>496,258</td><td>31.3%</td><td>8.0%</td><td>19.7%</td><td>12.9%</td></tr>
+<tr><td>Ukraine</td><td>80%+</td><td>5,908</td><td>732,304</td><td>46.1%</td><td>7.4%</td><td>13.0%</td><td>9.5%</td></tr>
+</tbody></table>
+
+<h2 class="section">Redispatch quality inflection (3 months)</h2>
+<p style="font-size:13px;color:#555;margin-bottom:12px">Late delivery 10min+ avg by redispatch band. 20%+ redispatch is where late deliveries spike consistently. Market p95 used as the threshold reference for the worst 5% of couriers.</p>
+<table class="dt"><thead><tr><th>Redispatch band</th><th>AZ late 10min+</th><th>AZ delay 20m+ p95</th><th>GH late 10min+</th><th>GH delay 20m+ p95</th><th>KE late 10min+</th><th>KE delay 20m+ p95</th><th>UA late 10min+</th><th>UA delay 20m+ p95</th></tr></thead><tbody>
+<tr><td>&lt;5%</td><td>9.4%</td><td>10.8%</td><td>13.2%</td><td>15.4%</td><td>12.3%</td><td>18.7%</td><td>7.0%</td><td>7.7%</td></tr>
+<tr><td>5-10%</td><td>9.5%</td><td>12.5%</td><td>11.6%</td><td>14.0%</td><td>14.1%</td><td>22.2%</td><td>7.2%</td><td>10.0%</td></tr>
+<tr><td>10-20%</td><td>12.3%</td><td>20.0%</td><td>13.8%</td><td>20.6%</td><td>17.3%</td><td>33.3%</td><td>8.3%</td><td>14.3%</td></tr>
+<tr style="background:#FDECEA"><td><b>20-30%</b></td><td class="tw">14.9%</td><td class="tw">25.0%</td><td class="tw">17.3%</td><td class="tw">33.3%</td><td class="tw">18.8%</td><td class="tw">43.8%</td><td class="tw">10.3%</td><td class="tw">25.0%</td></tr>
+<tr style="background:#FDECEA"><td>30-40%</td><td class="tw">16.5%</td><td class="tw">33.3%</td><td class="tw">22.7%</td><td class="tw">36.4%</td><td class="tw">24.2%</td><td class="tw">50.0%</td><td class="tw">12.7%</td><td class="tw">33.3%</td></tr>
+<tr style="background:#FDECEA"><td>40%+</td><td class="tw">20.9%</td><td class="tw">50.0%</td><td class="tw">22.7%</td><td class="tw">66.7%</td><td>25.0%</td><td>50.0%</td><td class="tw">13.3%</td><td class="tw">50.0%</td></tr>
+</tbody></table>
+
+<h2 class="section">Delays 20min+ quality inflection (3 months)</h2>
+<p style="font-size:13px;color:#555;margin-bottom:12px">Late delivery 10min+ avg by delay 20min+ band. The inflection point is around 5-10% across all markets. Market redispatch p95 shown for cross-reference.</p>
+<table class="dt"><thead><tr><th>Delay 20min+ band</th><th>AZ late 10min+</th><th>AZ redisp p95</th><th>GH late 10min+</th><th>GH redisp p95</th><th>KE late 10min+</th><th>KE redisp p95</th><th>UA late 10min+</th><th>UA redisp p95</th></tr></thead><tbody>
+<tr><td>&lt;2%</td><td>7.2%</td><td>18.4%</td><td>8.1%</td><td>14.3%</td><td>6.2%</td><td>12.5%</td><td>5.0%</td><td>16.7%</td></tr>
+<tr><td>2-5%</td><td>12.2%</td><td>22.2%</td><td>14.2%</td><td>16.7%</td><td>13.2%</td><td>14.3%</td><td>10.0%</td><td>22.2%</td></tr>
+<tr style="background:#FFF0D4"><td><b>5-10%</b></td><td style="color:#8A4D00">16.5%</td><td>27.3%</td><td style="color:#8A4D00">19.2%</td><td>20.0%</td><td style="color:#8A4D00">18.9%</td><td>18.2%</td><td style="color:#8A4D00">13.7%</td><td>28.6%</td></tr>
+<tr style="background:#FDECEA"><td>10-15%</td><td class="tw">22.0%</td><td>31.0%</td><td class="tw">24.2%</td><td>23.1%</td><td class="tw">24.6%</td><td>22.2%</td><td class="tw">18.4%</td><td>33.3%</td></tr>
+<tr style="background:#FDECEA"><td>15-20%</td><td class="tw">28.2%</td><td>33.3%</td><td class="tw">29.3%</td><td>26.5%</td><td class="tw">30.0%</td><td>25.0%</td><td class="tw">24.1%</td><td>40.0%</td></tr>
+<tr style="background:#FDECEA"><td>20%+</td><td class="tw">36.1%</td><td class="tw">36.7%</td><td class="tw">39.3%</td><td class="tw">30.0%</td><td class="tw">38.8%</td><td>25.0%</td><td class="tw">35.4%</td><td class="tw">50.0%</td></tr>
+</tbody></table>
+
+<h2 class="section">Proposed framework per market</h2>
+
+<!-- AZERBAIJAN -->
+<div class="card" style="margin-bottom:20px">
+<div class="ch"><div class="ct">Azerbaijan</div><div class="cm"><span class="ga">A</span> &middot; 2,935 couriers (3m) &middot; 482,304 orders (3m) &middot; Courier score: 30% (local)</div></div>
+<div class="cb">
+<table class="dt"><thead><tr><th>Offence</th><th>Threshold</th><th>Change</th><th>Escalation</th><th>Min orders</th><th>Rationale</th></tr></thead><tbody>
+<tr><td><b>Low AR</b></td><td><b>28.57%</b></td><td><span style="color:#3B6D11;font-weight:600">&darr; from 30%</span></td><td>Warn &rarr; 1-day &rarr; 3-day &rarr; 7-day &rarr; Termination</td><td>10 proposed</td><td>Aligned to courier score tool threshold. Market p10 is 43.8%, global p10 is 27.55%, so min = 28.57%. Below 30% late delivery 10min+ is 11.4% vs 10.2% at 80%+. Redispatch p95 spikes to 54% at 20-30% AR. 309 AR blocks in last 8 weeks.</td></tr>
+<tr><td><b>Redispatch</b></td><td><b>20%</b></td><td><span style="color:#185FA5;font-weight:600">Formalized</span></td><td>Warn &rarr; 3-day &rarr; 7-day &rarr; Termination</td><td>10 delivered</td><td>Market redispatch p95 = 22.2%. At 20%+ redispatch, late 10min+ jumps to 14.9%. Currently blocks for redispatch (201 in 8w) but no formal threshold. 212 couriers (7.2%) sit above 20% over 3 months.</td></tr>
+<tr><td><b>Delays 20min+</b></td><td><b>10%</b></td><td><span style="color:#185FA5;font-weight:600">New</span></td><td>Warn &rarr; 3-day &rarr; 7-day &rarr; Termination</td><td>10 delivered</td><td>Market delay 20min+ p95 = 17.2%. At 10%+ delays, late 10min+ spikes to 22.0% (3x the &lt;2% baseline of 7.2%). 355 couriers (12.1%) sit above 10%.</td></tr>
+</tbody></table>
+<div class="no nw" style="margin-top:12px"><b>Key changes:</b> AR aligned to 28.57% from courier score tool. Standardize escalation from hourly steps (3h/6h/9h) to daily. Formalize redispatch at 20%. Add delays 20min+ at 10%.</div>
+</div></div>
+
+<!-- GHANA -->
+<div class="card" style="margin-bottom:20px">
+<div class="ch"><div class="ct">Ghana</div><div class="cm"><span class="ga">A</span> &middot; 4,418 couriers (3m) &middot; 1,174,921 orders (3m) &middot; Courier score: 50% (local) &rarr; align to 33%</div></div>
+<div class="cb">
+<table class="dt"><thead><tr><th>Offence</th><th>Threshold</th><th>Change</th><th>Escalation</th><th>Min orders</th><th>Rationale</th></tr></thead><tbody>
+<tr><td><b>Low AR</b></td><td><b>40%</b></td><td><span style="color:#3B6D11;font-weight:600">&darr; from 50%</span></td><td>Warn &rarr; 3-day &rarr; 5-day &rarr; 7-day &rarr; Termination</td><td>10 proposed</td><td>Market p10 = 51.4%, global p10 = 27.55%, min = 28.57%. Current 50% catches ~10% of active couriers. Late 10min+ is 14.1% at 40-50% vs 13.6% at 80%+ &mdash; relatively flat. Main blocking is &ldquo;0% AR Lifetime&rdquo; (146 blocks in 8w) which should continue separately.</td></tr>
+<tr><td><b>Redispatch</b></td><td><b>20%</b></td><td><span style="color:#185FA5;font-weight:600">New</span></td><td>Warn &rarr; 3-day &rarr; 5-day &rarr; Termination</td><td>10 delivered</td><td>Market redispatch p95 = 17.6%. At 20%+ redispatch, late 10min+ jumps to 17.3%. 172 couriers (3.9%) sit above 20% over 3 months.</td></tr>
+<tr><td><b>Delays 20min+</b></td><td><b>10%</b></td><td><span style="color:#185FA5;font-weight:600">New</span></td><td>Warn &rarr; 3-day &rarr; 5-day &rarr; Termination</td><td>10 delivered</td><td>Market delay 20min+ p95 = 17.9%. At 10%+ delays, late 10min+ spikes to 24.2% (3x the &lt;2% baseline of 8.1%). 586 couriers (13.3%) sit above 10%.</td></tr>
+</tbody></table>
+<div class="no nw" style="margin-top:12px"><b>Key changes:</b> Reduce AR from 50% to 40%. Add redispatch at 20% and delays 20min+ at 10%. Align courier score from 50% to 33% HQ cap.</div>
+</div></div>
+
+<!-- KENYA -->
+<div class="card" style="margin-bottom:20px">
+<div class="ch"><div class="ct">Kenya</div><div class="cm"><span class="ga">A</span> &middot; 2,269 couriers (3m) &middot; 269,030 orders (3m) &middot; Courier score: Bottom 30% (local)</div></div>
+<div class="cb">
+<table class="dt"><thead><tr><th>Offence</th><th>Threshold</th><th>Change</th><th>Escalation</th><th>Min orders</th><th>Rationale</th></tr></thead><tbody>
+<tr><td><b>Low AR</b></td><td><b>60%</b></td><td><span style="color:#185FA5;font-weight:600">Converted from percentile</span></td><td>Educate &rarr; Warn &rarr; 3-day &rarr; 7-day &rarr; 30-day</td><td>10 proposed</td><td>Market p10 = 63.6%, global p10 = 27.55%, min = 28.57%. Kenya has highest AR in Group A (median 85.4%). Current percentile approach is non-standard. 60% sits near market p10 level. Below 50% late 10min+ is 24.4% vs 13.2% at 80%+.</td></tr>
+<tr><td><b>Redispatch</b></td><td><b>15%</b></td><td><span style="color:#185FA5;font-weight:600">New (stricter)</span></td><td>Educate &rarr; Warn &rarr; 3-day &rarr; 30-day</td><td>10 delivered</td><td>Market redispatch p95 = 16.0%. At 20%+ redispatch, late 10min+ jumps to 18.8%. Kenya quality degrades earlier than other Group A. 64 couriers (2.8%) above 20% over 3 months.</td></tr>
+<tr><td><b>Delays 20min+</b></td><td><b>10%</b></td><td><span style="color:#185FA5;font-weight:600">New</span></td><td>Educate &rarr; Warn &rarr; 3-day &rarr; 30-day</td><td>10 delivered</td><td>Market delay 20min+ p95 = 25.0%. At 10%+ delays, late 10min+ spikes to 24.6% (4x the &lt;2% baseline of 6.2%). 469 couriers (20.7%) sit above 10% &mdash; highest share in Group A.</td></tr>
+</tbody></table>
+<div class="no nw" style="margin-top:12px"><b>Key changes:</b> Convert from percentile to absolute thresholds. Add redispatch at 15% (stricter due to earlier degradation) and delays 20min+ at 10%.</div>
+</div></div>
+
+<!-- UKRAINE -->
+<div class="card" style="margin-bottom:20px">
+<div class="ch"><div class="ct">Ukraine</div><div class="cm"><span class="ga">A</span> &middot; 13,733 couriers (3m) &middot; 1,587,179 orders (3m) &middot; Courier score: 15% (local)</div></div>
+<div class="cb">
+<table class="dt"><thead><tr><th>Offence</th><th>Threshold</th><th>Change</th><th>Escalation</th><th>Min orders</th><th>Rationale</th></tr></thead><tbody>
+<tr><td><b>Low AR</b></td><td><b>20%</b></td><td><span class="ty">No change</span></td><td>Warn &rarr; 7-day &rarr; 14-day &rarr; Termination</td><td>10 proposed</td><td>Market p10 = 41.5%, global p10 = 27.55%, min = 23.23% (earlier calibration). Highest AR blocking volume in Group A (2,138 in 8w). Below 20% late 10min+ is 12.1% vs 7.4% at 80%+. Current system working. No legal constraint.</td></tr>
+<tr><td><b>Redispatch</b></td><td><b>20%</b></td><td><span style="color:#185FA5;font-weight:600">New</span></td><td>Warn &rarr; 7-day &rarr; 14-day &rarr; Termination</td><td>10 delivered</td><td>Market redispatch p95 = 21.4%. At 20%+ redispatch, late 10min+ jumps to 10.3%. 832 couriers (6.1%) sit above 20% over 3 months.</td></tr>
+<tr><td><b>Delays 20min+</b></td><td><b>5%</b></td><td><span style="color:#185FA5;font-weight:600">New (stricter)</span></td><td>Warn &rarr; 7-day &rarr; 14-day &rarr; Termination</td><td>10 delivered</td><td>Market delay 20min+ p95 = 12.5% (lowest in Group A). At 5%+ delays, late 10min+ hits 13.7% (2.7x the &lt;2% baseline of 5.0%). 2,056 couriers (15.0%) sit above 5%. Stricter threshold justified by lower baseline.</td></tr>
+</tbody></table>
+<div class="no nw" style="margin-top:12px"><b>Key changes:</b> Keep AR at 20%. Add redispatch at 20% and delays 20min+ at 5% (stricter than other Group A due to lower baseline delay rate). Keep existing long suspension steps (7-day, 14-day).</div>
+</div></div>
+
+<h2 class="section">Group A summary</h2>
+<table class="dt"><thead><tr><th>Market</th><th>AR threshold</th><th>AR change</th><th>Redispatch threshold</th><th>Redisp change</th><th>Delays 20min+</th><th>Delay change</th><th>Courier score</th><th>Key change</th></tr></thead><tbody>
+<tr><td><b>Azerbaijan</b></td><td>28.57%</td><td><span style="color:#3B6D11;font-weight:600">&darr; from 30%</span></td><td>20%</td><td><span style="color:#185FA5;font-weight:600">Formalized</span></td><td>10%</td><td><span style="color:#185FA5;font-weight:600">New</span></td><td>30%</td><td>AR aligned to score tool. Hourly &rarr; daily escalation</td></tr>
+<tr><td><b>Ghana</b></td><td>40%</td><td><span style="color:#3B6D11;font-weight:600">&darr; from 50%</span></td><td>20%</td><td><span style="color:#185FA5;font-weight:600">New</span></td><td>10%</td><td><span style="color:#185FA5;font-weight:600">New</span></td><td>50% &rarr; 33%</td><td>AR to quality inflection. Score to 33% HQ cap</td></tr>
+<tr><td><b>Kenya</b></td><td>60%</td><td><span style="color:#185FA5;font-weight:600">From percentile</span></td><td>15%</td><td><span style="color:#185FA5;font-weight:600">New (stricter)</span></td><td>10%</td><td><span style="color:#185FA5;font-weight:600">New</span></td><td>Bottom 30%</td><td>Absolute thresholds. Earlier quality degradation</td></tr>
+<tr><td><b>Ukraine</b></td><td>20%</td><td><span class="ty">No change</span></td><td>20%</td><td><span style="color:#185FA5;font-weight:600">New</span></td><td>5%</td><td><span style="color:#185FA5;font-weight:600">New (stricter)</span></td><td>15%</td><td>Add redispatch + delays. Lower delay baseline</td></tr>
+</tbody></table>
+
+</div>
+
+<!-- ============ COMPLIANCE ============ -->
+<div id="tab-compliance" class="tp">
+
+<div class="no nd"><b>December 2026 deadline:</b> All Class 2+ markets must have a human review step before any suspension is executed. This is a direct requirement of the Platform Work Directive. Build this into the framework now &mdash; it is not optional.</div>
+
+<div class="stats">
+<div class="stat"><div class="stat-val purple">4</div><div class="stat-label">Critical issues</div></div>
+<div class="stat"><div class="stat-val orange">6</div><div class="stat-label">High priority</div></div>
+<div class="stat"><div class="stat-val" style="color:#8A4D00">5</div><div class="stat-label">Medium priority</div></div>
+</div>
+
+<h2 class="section">Compliance action register</h2>
+<table class="dt"><thead><tr><th>Priority</th><th>Market</th><th>Grp</th><th>Issue</th><th>Required action</th><th>Deadline</th></tr></thead><tbody>
+<tr><td><span class="rtag rcrit">CRITICAL</span></td><td><b>Lithuania</b></td><td><span class="gd">D</span></td><td>Earnings deduction for multiapping &mdash; highest-risk action in portfolio. Resembles wage control.</td><td>Stop immediately. Replace with graduated suspension.</td><td><b>Immediate</b></td></tr>
+<tr><td><span class="rtag rcrit">CRITICAL</span></td><td><b>Latvia</b></td><td><span class="gc">C</span></td><td>Launched earnings deductions for multiapping (Lithuania approach). Same risk in an independent-only market.</td><td>Stop immediately. Replace with graduated suspension.</td><td><b>Immediate</b></td></tr>
+<tr><td><span class="rtag rcrit">CRITICAL</span></td><td><b>Czech Republic</b></td><td><span class="gd">D</span></td><td>AR blocking fully automated, no manual review. Class 2 PWD market.</td><td>Add human review queue before Dec 2026.</td><td><b>Q4 2026</b></td></tr>
+<tr><td><span class="rtag rcrit">CRITICAL</span></td><td><b>Lithuania</b></td><td><span class="gd">D</span></td><td>AR blocking + 0% completion blocking fully automated, no manual review.</td><td>Add human review queue.</td><td><b>Q4 2026</b></td></tr>
+<tr><td><span class="rtag rh">HIGH</span></td><td><b>Cyprus</b></td><td><span class="gd">D</span></td><td>AR threshold of 80% &mdash; most aggressive in entire portfolio.</td><td>Reduce to framework threshold of ~28.57%.</td><td>Q3 2026</td></tr>
+<tr><td><span class="rtag rh">HIGH</span></td><td><b>Bulgaria</b></td><td><span class="gb">B</span></td><td>AR threshold of 70% &mdash; second highest.</td><td>Reduce to framework threshold of ~28.57%.</td><td>Q3 2026</td></tr>
+<tr><td><span class="rtag rh">HIGH</span></td><td><b>Romania</b></td><td><span class="gb">B</span></td><td>AR threshold of 60% &mdash; framework threshold is ~28.57%.</td><td>Phased reduction. Review supply impact.</td><td>Q3 2026</td></tr>
+<tr><td><span class="rtag rh">HIGH</span></td><td><b>Georgia</b></td><td><span class="gd">D</span></td><td>AR threshold 60% + immediate termination for multiapping without warnings.</td><td>Reduce AR, introduce graduated escalation.</td><td>Q3 2026</td></tr>
+<tr><td><span class="rtag rh">HIGH</span></td><td><b>Georgia</b></td><td><span class="gd">D</span></td><td>Immediate termination for 5 other triggers without graduated process.</td><td>Serious: suspend pending investigation. Minor: warning first.</td><td>Q3 2026</td></tr>
+<tr><td><span class="rtag rh">HIGH</span></td><td><b>Cyprus</b></td><td><span class="gd">D</span></td><td>Immediate termination for multiapping without prior warnings.</td><td>Introduce graduated process.</td><td>Q3 2026</td></tr>
+<tr><td><span class="rtag rm">MEDIUM</span></td><td><b>Ghana</b></td><td><span class="ga">A</span></td><td>Courier score threshold 50% &mdash; above HQ cap of 33%.</td><td>Align with 33% cap.</td><td>Q3 2026</td></tr>
+<tr><td><span class="rtag rm">MEDIUM</span></td><td><b>Estonia</b></td><td><span class="gc">C</span></td><td>AI-automated AR blocking &mdash; human review gate not confirmed.</td><td>Confirm AI process includes human gate.</td><td>Q3 2026</td></tr>
+<tr><td><span class="rtag rm">MEDIUM</span></td><td><b>Estonia</b></td><td><span class="gc">C</span></td><td>AR reward campaign with 90% threshold &mdash; legally exposed.</td><td>Reframe as volume + quality bonus.</td><td>Q3 2026</td></tr>
+<tr><td><span class="rtag rm">MEDIUM</span></td><td><b>Georgia</b></td><td><span class="gd">D</span></td><td>AR campaigns with 70% threshold as condition.</td><td>Reframe as positive bonus. Review with legal.</td><td>Q3 2026</td></tr>
+<tr><td><span class="rtag rm">MEDIUM</span></td><td><b>Multiple</b></td><td><span class="gd">D</span></td><td>No defined unblocking process (Georgia, Latvia, Lithuania, Estonia, Azerbaijan).</td><td>Define and document basic unblocking criteria.</td><td>Q4 2026</td></tr>
+</tbody></table>
+
+<h2 class="section">PWD readiness by market</h2>
+<table class="dt"><thead><tr><th>Market</th><th>Group</th><th>PWD</th><th>AR automation</th><th>Manual review</th><th>Dec 2026 compliant</th></tr></thead><tbody>
+<tr><td><b>Latvia</b></td><td><span class="gc">C</span></td><td>Yes</td><td>Manual</td><td>Inherent</td><td class="ty">Yes</td></tr>
+<tr><td><b>Bulgaria</b></td><td><span class="gb">B</span></td><td>Yes</td><td>Manual</td><td>Inherent</td><td class="ty">Yes</td></tr>
+<tr><td><b>Cyprus</b></td><td><span class="gd">D</span></td><td>Yes</td><td>Partially automated</td><td>Yes</td><td class="ty">Yes</td></tr>
+<tr><td><b>Slovakia</b></td><td><span class="gd">D</span></td><td>Yes</td><td>Partially automated</td><td>Yes</td><td class="ty">Yes</td></tr>
+<tr><td><b>Poland</b></td><td><span class="gd">D</span></td><td>Yes</td><td>Partially automated</td><td>Yes</td><td class="ty">Yes</td></tr>
+<tr><td><b>Malta</b></td><td><span class="gd">D</span></td><td>Yes</td><td>Manual (delays)</td><td>Manual</td><td class="ty">Yes (current)</td></tr>
+<tr><td><b>Romania</b></td><td><span class="gb">B</span></td><td>Yes</td><td>Partially automated</td><td>Not specified</td><td style="color:#8A4D00;font-weight:600">Borderline &mdash; clarify</td></tr>
+<tr><td><b>Estonia</b></td><td><span class="gc">C</span></td><td>Yes</td><td>Partially automated (AI)</td><td>Not confirmed</td><td style="color:#8A4D00;font-weight:600">Borderline &mdash; confirm AI gate</td></tr>
+<tr><td><b>Czech Republic</b></td><td><span class="gd">D</span></td><td>Yes</td><td>Fully automated</td><td>No</td><td class="tw">No &mdash; review queue needed</td></tr>
+<tr><td><b>Lithuania</b></td><td><span class="gd">D</span></td><td>Yes</td><td>Fully automated</td><td>No</td><td class="tw">No &mdash; review queue needed</td></tr>
+<tr><td><b>Georgia</b></td><td><span class="gd">D</span></td><td>No (non-EU)</td><td>Partially automated</td><td>Not specified</td><td class="tn">N/A &mdash; non-EU</td></tr>
+<tr><td><b>Portugal</b></td><td><span class="ge">E</span></td><td>Yes</td><td>N/A</td><td>N/A</td><td class="tn">N/A &mdash; no blocking</td></tr>
+</tbody></table>
+</div>
+
+
+<div class="foot">Global Courier Performance Management Framework &middot; v1 Draft &middot; Marian Caraolani &middot; June 2026<br>Last updated: 23 June 2026 &middot; 16 markets &middot; All data from audit form responses, Confluence, PWD doc, and Slack intelligence</div>
+</div>
+
+<script>
+function switchTab(n,b){
+  document.querySelectorAll('.tp').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tbtn').forEach(x=>x.classList.remove('active'));
+  document.getElementById('tab-'+n).classList.add('active');
+  b.classList.add('active');
+}
+function toggleCard(el){
+  const body=el.nextElementSibling;
+  const chev=el.querySelector('.chevron');
+  body.classList.toggle('collapsed');
+  chev.classList.toggle('open');
+}
+
+</script></body></html>

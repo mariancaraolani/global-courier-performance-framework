@@ -512,6 +512,68 @@ h3.subsection{font-size:15px;font-weight:600;margin:16px 0 8px}
 <table class="dt" id="romania-dist-table"><thead><tr><th>AR bucket</th><th>Couriers</th><th>% of total</th><th>Orders</th><th>% of orders</th><th>Avg redispatch</th><th>Avg delay 20m+</th><th>Avg late 10m+</th></tr></thead><tbody id="romania-dist-body">
 </tbody></table>
 </div>
+
+<h2 class="section">5. Fleet-level view (W26)</h2>
+<div class="no ni"><b>Fleet AR SLA: &gt;80%.</b> Couriers with weighted-average AR &lt;80% during W26 (Jun 23&ndash;29). Only fleets with 10+ active couriers shown. Sorted by number of underperformers.</div>
+<div style="margin-bottom:12px"><button onclick="downloadFleetCSV('romania')" style="padding:8px 16px;background:#34A853;color:#fff;border:none;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer">Download Fleet CSV</button></div>
+<div style="overflow-x:auto">
+<table class="dt" id="ro-fleet-table"><thead><tr><th>Fleet</th><th>Couriers</th><th>Below 80%</th><th>% below</th><th>Total orders</th><th>Orders from flagged</th><th>Fleet avg AR</th><th>Flag</th></tr></thead><tbody>
+<tr><td><b>P E R P E T U A L SRL</b></td><td>910</td><td class="">121</td><td>13.3%</td><td>38,178</td><td>3,714</td><td class="tb">91.3%</td><td><span class="ty">OK</span></td></tr>
+<tr><td><b>TimeToGo SRL</b></td><td>506</td><td class="gc">115</td><td>22.7%</td><td>22,088</td><td>3,977</td><td class="tb">87.4%</td><td><span style="color:#8A4D00;font-weight:600">MODERATE</span></td></tr>
+<tr><td><b>RZV Delivery SRL</b></td><td>504</td><td class="">70</td><td>13.9%</td><td>19,004</td><td>1,715</td><td class="tb">91.2%</td><td><span class="ty">OK</span></td></tr>
+<tr><td><b>Ride It SRL</b></td><td>420</td><td class="gc">65</td><td>15.5%</td><td>13,878</td><td>1,520</td><td class="tb">90.1%</td><td><span style="color:#8A4D00;font-weight:600">MODERATE</span></td></tr>
+<tr><td><b>Zek Delivery SRL</b></td><td>253</td><td class="gc">60</td><td>23.7%</td><td>12,881</td><td>2,358</td><td class="tb">86.9%</td><td><span style="color:#8A4D00;font-weight:600">MODERATE</span></td></tr>
+<tr><td><b>Gusty Solutions SRL</b></td><td>277</td><td class="gc">60</td><td>21.7%</td><td>10,398</td><td>1,495</td><td class="tb">88.3%</td><td><span style="color:#8A4D00;font-weight:600">MODERATE</span></td></tr>
+<tr><td><b>Caffe Corint SRL</b></td><td>219</td><td class="gc">59</td><td>26.9%</td><td>7,747</td><td>1,831</td><td class="tb">85.5%</td><td><span style="color:#8A4D00;font-weight:600">MODERATE</span></td></tr>
+<tr><td><b>Dov Hub SRL</b></td><td>188</td><td class="gc">48</td><td>25.5%</td><td>8,901</td><td>1,817</td><td class="tb">86.4%</td><td><span style="color:#8A4D00;font-weight:600">MODERATE</span></td></tr>
+<tr><td><b>PHI Works SRL</b></td><td>220</td><td class="gc">38</td><td>17.3%</td><td>7,667</td><td>1,202</td><td class="tb">89.3%</td><td><span style="color:#8A4D00;font-weight:600">MODERATE</span></td></tr>
+<tr><td><b>Toms Wheel Grip SRL</b></td><td>243</td><td class="">29</td><td>11.9%</td><td>10,092</td><td>890</td><td class="tb">91.5%</td><td><span class="ty">OK</span></td></tr>
+<tr><td><b>RP Logistic Solutions SRL</b></td><td>157</td><td class="gc">28</td><td>17.8%</td><td>8,876</td><td>1,199</td><td class="tb">89.3%</td><td><span style="color:#8A4D00;font-weight:600">MODERATE</span></td></tr>
+<tr><td><b>Cris Racing Delivery SRL</b></td><td>225</td><td class="">27</td><td>12.0%</td><td>11,275</td><td>1,072</td><td class="tb">91.3%</td><td><span class="ty">OK</span></td></tr>
+<tr><td><b>Purespeed SRL</b></td><td>70</td><td class="tw">25</td><td>35.7%</td><td>2,939</td><td>1,194</td><td class="tb">84.6%</td><td><span class="tw"><b>HIGH</b></span></td></tr>
+<tr><td><b>Rapid Go SRL</b></td><td>167</td><td class="">18</td><td>10.8%</td><td>7,921</td><td>385</td><td class="tb">91.8%</td><td><span class="ty">OK</span></td></tr>
+<tr><td><b>Cibero SRL</b></td><td>101</td><td class="gc">17</td><td>16.8%</td><td>3,686</td><td>294</td><td class="tb">88.3%</td><td><span style="color:#8A4D00;font-weight:600">MODERATE</span></td></tr>
+</tbody></table>
+</div>
+<div class="no nw" style="margin-top:12px"><b>Top 3 fleets by underperformer count:</b> P E R P E T U A L (121), TimeToGo (115), RZV Delivery (70) &mdash; these three fleets account for 306 of the 780 flagged couriers shown above. Fleet-level engagement should prioritize these partners.</div>
+
+<h2 class="section">6. Post-block improvement analysis</h2>
+<div class="no ni"><b>Couriers blocked for Low AR / Bad Performance</b> between May 12 and Jun 1, 2026. AR compared 7 days before block vs 7 days after unblock.</div>
+<div class="stats">
+<div class="stat"><div class="stat-val blue">798</div><div class="stat-label">Couriers blocked</div></div>
+<div class="stat"><div class="stat-val">200</div><div class="stat-label">With pre &amp; post data</div></div>
+<div class="stat"><div class="stat-val green">26%</div><div class="stat-label">Improved AR after block</div></div>
+<div class="stat"><div class="stat-val orange">56</div><div class="stat-label">Repeat offenders (within 4w)</div></div>
+</div>
+<div style="overflow-x:auto">
+<table class="dt"><thead><tr><th>Metric</th><th>Value</th><th>Interpretation</th></tr></thead><tbody>
+<tr><td><b>Total couriers blocked (May 12&ndash;Jun 1)</b></td><td>798</td><td>Low AR and Bad Performance blocks combined</td></tr>
+<tr><td><b>Couriers with both pre &amp; post AR data</b></td><td>200 (25%)</td><td>598 either didn&rsquo;t return or lacked sufficient data in the measurement windows</td></tr>
+<tr><td><b>Average AR before block</b></td><td class="tw">62.3%</td><td>Already above current 60% threshold &mdash; likely blocked for &lt;30% on specific days</td></tr>
+<tr><td><b>Average AR after unblock</b></td><td class="ty">76.6%</td><td>+14.3pp improvement post-block</td></tr>
+<tr><td><b>Couriers who improved</b></td><td>52 of 200 (26%)</td><td>Minority improved; many had already-high weekly averages pre-block</td></tr>
+<tr><td><b>Repeat offenders (re-blocked within 4 weeks)</b></td><td class="tw">56 (7%)</td><td>Of all 798 blocked, 56 were blocked again for same reasons</td></tr>
+</tbody></table>
+</div>
+<div class="no nw" style="margin-top:12px"><b>Key insight:</b> 75% of blocked couriers (598 of 798) either did not return or had insufficient data post-unblock. Of those who did return with data, the average AR improved by 14.3pp. The 7% repeat offender rate suggests blocks have moderate deterrent effect, but the high non-return rate may indicate supply loss from blocking.</div>
+
+<h2 class="section">7. City-level drill-down</h2>
+<div class="no ni"><b>Top 8 cities by order volume</b> &middot; 4 weeks (Jun 9 &ndash; Jul 6, 2026) &middot; Couriers below 60% AR with 10+ proposed orders &middot; W26 supply/demand forecast</div>
+<div style="margin-bottom:12px"><button onclick="downloadCityCSV('romania')" style="padding:8px 16px;background:#34A853;color:#fff;border:none;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer">Download City CSV</button></div>
+<div style="overflow-x:auto">
+<table class="dt" id="ro-city-table"><thead><tr><th>City</th><th>Active couriers</th><th>Orders (4w)</th><th>Below 60% AR</th><th>Orders from flagged</th><th>W26 demand/supply</th><th>Supply status</th></tr></thead><tbody>
+<tr><td><b>Bucharest</b></td><td>4,981</td><td>517,982</td><td>825 (16.6%)</td><td>6,034</td><td>37,005 / 30,227</td><td><span class="tw"><b>UNDER</b> (-4,035)</span></td></tr>
+<tr><td><b>Cluj-Napoca</b></td><td>1,638</td><td>257,461</td><td>775 (47.3%)</td><td>6,821</td><td>18,667 / 12,303</td><td><span class="tw"><b>UNDER</b> (-7,110)</span></td></tr>
+<tr><td><b>Constanta</b></td><td>780</td><td>84,521</td><td>125 (16.0%)</td><td>1,053</td><td>5,664 / 3,682</td><td><span class="tw"><b>UNDER</b> (-2,243)</span></td></tr>
+<tr><td><b>Iasi</b></td><td>710</td><td>72,940</td><td>191 (26.9%)</td><td>1,433</td><td>5,651 / 2,799</td><td><span class="tw"><b>UNDER</b> (-1,823)</span></td></tr>
+<tr><td><b>Craiova</b></td><td>562</td><td>49,263</td><td>77 (13.7%)</td><td>586</td><td>3,724 / 2,124</td><td><span class="tw"><b>UNDER</b> (-1,651)</span></td></tr>
+<tr><td><b>Timisoara</b></td><td>730</td><td>44,331</td><td>238 (32.6%)</td><td>1,767</td><td>3,474 / 2,243</td><td><span class="tw"><b>UNDER</b> (-1,242)</span></td></tr>
+<tr><td><b>Brasov</b></td><td>527</td><td>43,465</td><td>90 (17.1%)</td><td>574</td><td>3,170 / 1,849</td><td><span class="tw"><b>UNDER</b> (-1,284)</span></td></tr>
+<tr><td><b>Oradea</b></td><td>412</td><td>31,213</td><td>38 (9.2%)</td><td>262</td><td>2,514 / 1,422</td><td><span class="tw"><b>UNDER</b> (-1,028)</span></td></tr>
+</tbody></table>
+</div>
+<div class="no nd" style="margin-top:12px"><b>All 8 cities are UNDERSUPPLIED.</b> Cluj-Napoca has the most couriers below 60% AR (775) despite being the #2 city by volume. Bucharest has 825 below threshold but they represent only 1.2% of Bucharest&rsquo;s total orders. Blocking in undersupplied cities requires careful supply impact assessment.</div>
+
 </div>
 
 <!-- ============ CZECH REPUBLIC ============ -->
@@ -568,6 +630,68 @@ h3.subsection{font-size:15px;font-weight:600;margin:16px 0 8px}
 <table class="dt" id="czechrepublic-dist-table"><thead><tr><th>AR bucket</th><th>Couriers</th><th>% of total</th><th>Orders</th><th>% of orders</th><th>Avg redispatch</th><th>Avg delay 20m+</th><th>Avg late 10m+</th></tr></thead><tbody id="czechrepublic-dist-body">
 </tbody></table>
 </div>
+
+<h2 class="section">5. Fleet-level view (W26)</h2>
+<div class="no ni"><b>Fleet AR SLA: &gt;65%.</b> Couriers with weighted-average AR &lt;65% during W26 (Jun 23&ndash;29). Fleets with 5+ active couriers shown. Independent couriers (no fleet) listed separately.</div>
+<div style="margin-bottom:12px"><button onclick="downloadFleetCSV('czechrepublic')" style="padding:8px 16px;background:#34A853;color:#fff;border:none;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer">Download Fleet CSV</button></div>
+<div style="overflow-x:auto">
+<table class="dt" id="cz-fleet-table"><thead><tr><th>Fleet</th><th>Couriers</th><th>Below 65%</th><th>% below</th><th>Total orders</th><th>Orders from flagged</th><th>Fleet avg AR</th><th>Flag</th></tr></thead><tbody>
+<tr><td><b>Independent (no fleet)</b></td><td>802</td><td class="tw">424</td><td>52.9%</td><td>25,916</td><td>11,360</td><td class="tb">61.5%</td><td><span class="tw"><b>HIGH</b></span></td></tr>
+<tr><td><b>Flotilový partner s.r.o.</b></td><td>253</td><td class="tw">89</td><td>35.2%</td><td>11,885</td><td>3,348</td><td class="tb">70.9%</td><td><span class="tw"><b>HIGH</b></span></td></tr>
+<tr><td><b>FOOD DELIVERY PARTNERS s.r.o.</b></td><td>456</td><td class="gc">78</td><td>17.1%</td><td>14,858</td><td>1,691</td><td class="tb">81.0%</td><td><span style="color:#8A4D00;font-weight:600">MODERATE</span></td></tr>
+<tr><td><b>BZPRVP s.r.o.</b></td><td>138</td><td class="tw">53</td><td>38.4%</td><td>6,093</td><td>2,043</td><td class="tb">68.8%</td><td><span class="tw"><b>HIGH</b></span></td></tr>
+<tr><td><b>Outstaffing Svet s.r.o.</b></td><td>51</td><td class="tw">34</td><td>66.7%</td><td>2,107</td><td>1,220</td><td class="tb">54.9%</td><td><span class="tw"><b>HIGH</b></span></td></tr>
+<tr><td><b>Doručenka, s.r.o.</b></td><td>117</td><td class="">16</td><td>13.7%</td><td>2,760</td><td>298</td><td class="tb">82.0%</td><td><span class="ty">OK</span></td></tr>
+<tr><td><b>Aapni s.r.o.</b></td><td>45</td><td class="tw">15</td><td>33.3%</td><td>7,512</td><td>2,370</td><td class="tb">68.3%</td><td><span class="tw"><b>HIGH</b></span></td></tr>
+<tr><td><b>MARI-Line Express, s.r.o.</b></td><td>27</td><td class="tw">13</td><td>48.1%</td><td>2,166</td><td>830</td><td class="tb">68.7%</td><td><span class="tw"><b>HIGH</b></span></td></tr>
+<tr><td><b>UrbanMove s.r.o.</b></td><td>32</td><td class="tw">12</td><td>37.5%</td><td>1,405</td><td>275</td><td class="tb">68.9%</td><td><span class="tw"><b>HIGH</b></span></td></tr>
+<tr><td><b>MINI BANGLADESH s.r.o.</b></td><td>14</td><td class="tw">12</td><td>85.7%</td><td>412</td><td>347</td><td class="tb">46.1%</td><td><span class="tw"><b>HIGH</b></span></td></tr>
+<tr><td><b>MY Fleet Services s.r.o.</b></td><td>41</td><td class="gc">12</td><td>29.3%</td><td>1,890</td><td>463</td><td class="tb">74.2%</td><td><span style="color:#8A4D00;font-weight:600">MODERATE</span></td></tr>
+<tr><td><b>MIYA Express s.r.o.</b></td><td>28</td><td class="tw">11</td><td>39.3%</td><td>1,650</td><td>335</td><td class="tb">72.0%</td><td><span class="tw"><b>HIGH</b></span></td></tr>
+<tr><td><b>Simple Trans s.r.o.</b></td><td>44</td><td class="gc">10</td><td>22.7%</td><td>3,870</td><td>718</td><td class="tb">78.4%</td><td><span style="color:#8A4D00;font-weight:600">MODERATE</span></td></tr>
+<tr><td><b>GreatGo s.r.o.</b></td><td>16</td><td class="tw">8</td><td>50.0%</td><td>1,358</td><td>790</td><td class="tb">61.6%</td><td><span class="tw"><b>HIGH</b></span></td></tr>
+<tr><td><b>Vikas Jha</b></td><td>16</td><td class="tw">8</td><td>50.0%</td><td>1,064</td><td>677</td><td class="tb">67.2%</td><td><span class="tw"><b>HIGH</b></span></td></tr>
+</tbody></table>
+</div>
+<div class="no nd" style="margin-top:12px"><b>424 independent (no-fleet) couriers</b> are below 65% AR &mdash; the largest group. These are I&#268;O couriers who <b>cannot be blocked for AR</b> per CZ legal constraints. Fleet couriers (Flotilový partner: 89, FOOD DELIVERY PARTNERS: 78, BZPRVP: 53) can be actioned via fleet channel.</div>
+
+<h2 class="section">6. Post-block improvement analysis</h2>
+<div class="no ni"><b>Couriers blocked for Bad Performance</b> between May 12 and Jun 1, 2026. AR compared 7 days before block vs 7 days after unblock.</div>
+<div class="stats">
+<div class="stat"><div class="stat-val blue">62</div><div class="stat-label">Couriers blocked</div></div>
+<div class="stat"><div class="stat-val">58</div><div class="stat-label">With pre &amp; post data</div></div>
+<div class="stat"><div class="stat-val green">51.7%</div><div class="stat-label">Improved AR after block</div></div>
+<div class="stat"><div class="stat-val orange">3</div><div class="stat-label">Repeat offenders (within 4w)</div></div>
+</div>
+<div style="overflow-x:auto">
+<table class="dt"><thead><tr><th>Metric</th><th>Value</th><th>Interpretation</th></tr></thead><tbody>
+<tr><td><b>Total couriers blocked (May 12&ndash;Jun 1)</b></td><td>62</td><td>Bad Performance blocks only (CZ does not block for Low AR directly)</td></tr>
+<tr><td><b>Couriers with both pre &amp; post AR data</b></td><td>58 (93.5%)</td><td>High data coverage &mdash; most couriers returned after block</td></tr>
+<tr><td><b>Average AR before block</b></td><td class="tw">19.9%</td><td>Very low &mdash; these were severely underperforming</td></tr>
+<tr><td><b>Average AR after unblock</b></td><td class="ty">37.8%</td><td>+17.9pp improvement post-block</td></tr>
+<tr><td><b>Couriers who improved</b></td><td>30 of 58 (51.7%)</td><td>Majority improved &mdash; blocking is effective for CZ bad performers</td></tr>
+<tr><td><b>Repeat offenders (re-blocked within 4 weeks)</b></td><td class="ty">3 (4.8%)</td><td>Very low repeat rate &mdash; strong deterrent effect</td></tr>
+</tbody></table>
+</div>
+<div class="no ns" style="margin-top:12px"><b>Key insight:</b> CZ blocking shows stronger results than Romania: 93.5% return rate (vs 25%), 51.7% improvement rate (vs 26%), and only 4.8% repeat offenders (vs 7%). The much lower volume of blocks (62 vs 798) and targeting of severe underperformers (19.9% pre-block AR) likely explains the effectiveness.</div>
+
+<h2 class="section">7. City-level drill-down</h2>
+<div class="no ni"><b>Top 8 cities by order volume</b> &middot; 4 weeks (Jun 9 &ndash; Jul 6, 2026) &middot; Couriers below 40% AR with 10+ proposed orders &middot; W26 supply/demand forecast</div>
+<div style="margin-bottom:12px"><button onclick="downloadCityCSV('czechrepublic')" style="padding:8px 16px;background:#34A853;color:#fff;border:none;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer">Download City CSV</button></div>
+<div style="overflow-x:auto">
+<table class="dt" id="cz-city-table"><thead><tr><th>City</th><th>Active couriers</th><th>Orders (4w)</th><th>Below 40% AR</th><th>Orders from flagged</th><th>W26 demand/supply</th><th>Supply status</th></tr></thead><tbody>
+<tr><td><b>Prague</b></td><td>2,470</td><td>249,897</td><td>2,598 (105.2%)</td><td>20,380</td><td>17,887 / 8,033</td><td><span class="tw"><b>UNDER</b> (-9,557)</span></td></tr>
+<tr><td><b>Brno</b></td><td>574</td><td>41,804</td><td>855 (149.0%)</td><td>6,456</td><td>3,077 / 1,342</td><td><span class="tw"><b>UNDER</b> (-1,808)</span></td></tr>
+<tr><td><b>Plzen</b></td><td>365</td><td>27,526</td><td>173 (47.4%)</td><td>1,314</td><td>2,003 / 931</td><td><span class="tw"><b>UNDER</b> (-1,055)</span></td></tr>
+<tr><td><b>Ostrava</b></td><td>368</td><td>21,351</td><td>187 (50.8%)</td><td>1,023</td><td>1,537 / 656</td><td><span class="tw"><b>UNDER</b> (-807)</span></td></tr>
+<tr><td><b>Olomouc</b></td><td>287</td><td>13,880</td><td>172 (59.9%)</td><td>1,021</td><td>1,079 / 527</td><td><span class="tw"><b>UNDER</b> (-474)</span></td></tr>
+<tr><td><b>Hradec Kralove</b></td><td>140</td><td>8,168</td><td>34 (24.3%)</td><td>195</td><td>623 / 274</td><td><span class="tw"><b>UNDER</b> (-316)</span></td></tr>
+<tr><td><b>Zlin</b></td><td>129</td><td>7,916</td><td>134 (103.9%)</td><td>669</td><td>665 / 348</td><td><span class="tw"><b>UNDER</b> (-236)</span></td></tr>
+<tr><td><b>Decin</b></td><td>84</td><td>6,110</td><td>12 (14.3%)</td><td>56</td><td>&mdash;</td><td><span style="color:#888">No data</span></td></tr>
+</tbody></table>
+</div>
+<div class="no nd" style="margin-top:12px"><b>All cities are UNDERSUPPLIED.</b> Prague dominates: 2,598 couriers below 40% AR delivering 20,380 orders. The supply gap in Prague alone (-9,557 W26) is larger than most other cities&rsquo; total demand. Note: many of these are independent I&#268;O couriers who cannot be blocked for AR.</div>
+
 </div>
 
 <!-- ============ COMPLIANCE ============ -->
@@ -636,11 +760,11 @@ function runSimulator(marketId, data, supply) {
   var rdThr = parseFloat(document.getElementById(marketId+'-rd-thr').value)||0;
   var dlThr = parseFloat(document.getElementById(marketId+'-dl-thr').value)||0;
   var scThr = parseFloat(document.getElementById(marketId+'-sc-thr').value)||0;
-  
+
   var totalCouriers = data.length;
   var totalOrders = data.reduce(function(s,c){return s+c.d},0);
   var flagged = [];
-  
+
   for(var i=0;i<data.length;i++) {
     var c = data[i];
     var f = false;
@@ -649,27 +773,46 @@ function runSimulator(marketId, data, supply) {
     if(c.dl !== null && c.dl > dlThr) f = true;
     if(f) flagged.push(c);
   }
-  
+
   var flaggedOrders = flagged.reduce(function(s,c){return s+c.d},0);
   var pctCouriers = (flagged.length/totalCouriers*100).toFixed(1);
   var pctOrders = (flaggedOrders/totalOrders*100).toFixed(1);
   var supplyImpact = supply.actualSupply - flaggedOrders;
   var newDeficit = supplyImpact - supply.actualDemand;
-  
+
   var html = '<div class="stat"><div class="stat-val orange">'+flagged.length+'</div><div class="stat-label">Couriers flagged ('+pctCouriers+'%)</div></div>';
   html += '<div class="stat"><div class="stat-val">'+flaggedOrders.toLocaleString()+'</div><div class="stat-label">Orders at risk ('+pctOrders+'%)</div></div>';
   html += '<div class="stat"><div class="stat-val blue">'+supplyImpact.toLocaleString()+'</div><div class="stat-label">Remaining supply</div></div>';
-  html += '<div class="stat"><div class="stat-val '+(newDeficit>=0?'green':'orange')+'">'+((newDeficit>=0?'+':'')+newDeficit.toLocaleString())+'</div><div class="stat-label">New surplus/deficit</div></div>';
-  
+  html += '<div class="stat"><div class="stat-val '+(newDeficit>=0?'green':'orange')+'">'+(newDeficit>=0?'+':'')+newDeficit.toLocaleString()+'</div><div class="stat-label">New surplus/deficit</div></div>';
+
   document.getElementById(marketId+'-sim-results').innerHTML = html;
-  
+
   var warn = '';
   if(newDeficit < 0 && flaggedOrders > 0) {
     warn = '<div class="no nd"><b>Warning:</b> Blocking these '+flagged.length+' couriers would remove '+flaggedOrders.toLocaleString()+' orders from supply, worsening the deficit to '+newDeficit.toLocaleString()+' orders.</div>';
   }
+
+  // Order-based impact categories
+  var neg=0,negO=0,low=0,lowO=0,mean=0,meanO=0;
+  for(var j=0;j<flagged.length;j++){
+    var d=flagged[j].d;
+    if(d<=3){neg++;negO+=d}
+    else if(d<=9){low++;lowO+=d}
+    else{mean++;meanO+=d}
+  }
+  if(flagged.length>0){
+    var isUnder = supply.actualSupply < supply.actualDemand;
+    warn += '<div class="no ni" style="margin-top:8px"><b>Order-based impact breakdown:</b><br>';
+    warn += '<span class="ty">'+neg+' couriers</span> with negligible volume (0&ndash;3 orders/week, '+negO+' orders total) &mdash; <b>safe to block</b> regardless of supply.<br>';
+    warn += '<span style="color:#8A4D00;font-weight:600">'+low+' couriers</span> with low volume (4&ndash;9 orders/week, '+lowO+' orders total) &mdash; moderate concern'+(isUnder?' in undersupplied market':'')+'.';
+    if(mean>0){
+      warn += '<br><span class="tw">'+mean+' couriers</span> with meaningful volume (10+ orders/week, '+meanO.toLocaleString()+' orders total) &mdash; '+(isUnder?'<b>warning: blocking would worsen supply deficit</b>':'blocking feasible with current supply')+'.';
+    }
+    warn += '</div>';
+  }
+
   document.getElementById(marketId+'-sim-warning').innerHTML = warn;
-  
-  // Update distribution table
+
   updateDistTable(marketId, data, totalOrders, totalCouriers);
 }
 
@@ -731,4 +874,39 @@ function switchTab(n, b) {
     });
   });
 });
+
+var roFleetData = [{"name": "P E R P E T U A L SRL", "total": 910, "below": 121, "orders": 38178, "ar": 91.3, "ob": 3714}, {"name": "TimeToGo SRL", "total": 506, "below": 115, "orders": 22088, "ar": 87.4, "ob": 3977}, {"name": "RZV Delivery SRL", "total": 504, "below": 70, "orders": 19004, "ar": 91.2, "ob": 1715}, {"name": "Ride It SRL", "total": 420, "below": 65, "orders": 13878, "ar": 90.1, "ob": 1520}, {"name": "Zek Delivery SRL", "total": 253, "below": 60, "orders": 12881, "ar": 86.9, "ob": 2358}, {"name": "Gusty Solutions SRL", "total": 277, "below": 60, "orders": 10398, "ar": 88.3, "ob": 1495}, {"name": "Caffe Corint SRL", "total": 219, "below": 59, "orders": 7747, "ar": 85.5, "ob": 1831}, {"name": "Dov Hub SRL", "total": 188, "below": 48, "orders": 8901, "ar": 86.4, "ob": 1817}, {"name": "PHI Works SRL", "total": 220, "below": 38, "orders": 7667, "ar": 89.3, "ob": 1202}, {"name": "Toms Wheel Grip SRL", "total": 243, "below": 29, "orders": 10092, "ar": 91.5, "ob": 890}, {"name": "RP Logistic Solutions SRL", "total": 157, "below": 28, "orders": 8876, "ar": 89.3, "ob": 1199}, {"name": "Cris Racing Delivery SRL", "total": 225, "below": 27, "orders": 11275, "ar": 91.3, "ob": 1072}, {"name": "Purespeed SRL", "total": 70, "below": 25, "orders": 2939, "ar": 84.6, "ob": 1194}, {"name": "Rapid Go SRL", "total": 167, "below": 18, "orders": 7921, "ar": 91.8, "ob": 385}, {"name": "Cibero SRL", "total": 101, "below": 17, "orders": 3686, "ar": 88.3, "ob": 294}];
+var czFleetData = [{"name": "Independent (no fleet)", "total": 802, "below": 424, "orders": 25916, "ar": 61.5, "ob": 11360}, {"name": "Flotilový partner s.r.o.", "total": 253, "below": 89, "orders": 11885, "ar": 70.9, "ob": 3348}, {"name": "FOOD DELIVERY PARTNERS s.r.o.", "total": 456, "below": 78, "orders": 14858, "ar": 81.0, "ob": 1691}, {"name": "BZPRVP s.r.o.", "total": 138, "below": 53, "orders": 6093, "ar": 68.8, "ob": 2043}, {"name": "Outstaffing Svet s.r.o.", "total": 51, "below": 34, "orders": 2107, "ar": 54.9, "ob": 1220}, {"name": "Doručenka, s.r.o.", "total": 117, "below": 16, "orders": 2760, "ar": 82.0, "ob": 298}, {"name": "Aapni s.r.o.", "total": 45, "below": 15, "orders": 7512, "ar": 68.3, "ob": 2370}, {"name": "MARI-Line Express, s.r.o.", "total": 27, "below": 13, "orders": 2166, "ar": 68.7, "ob": 830}, {"name": "UrbanMove s.r.o.", "total": 32, "below": 12, "orders": 1405, "ar": 68.9, "ob": 275}, {"name": "MINI BANGLADESH s.r.o.", "total": 14, "below": 12, "orders": 412, "ar": 46.1, "ob": 347}, {"name": "MY Fleet Services s.r.o.", "total": 41, "below": 12, "orders": 1890, "ar": 74.2, "ob": 463}, {"name": "MIYA Express s.r.o.", "total": 28, "below": 11, "orders": 1650, "ar": 72.0, "ob": 335}, {"name": "Simple Trans s.r.o.", "total": 44, "below": 10, "orders": 3870, "ar": 78.4, "ob": 718}, {"name": "GreatGo s.r.o.", "total": 16, "below": 8, "orders": 1358, "ar": 61.6, "ob": 790}, {"name": "Vikas Jha", "total": 16, "below": 8, "orders": 1064, "ar": 67.2, "ob": 677}];
+var roCityData = [{"city": "Bucharest", "couriers": 4981, "orders": 517982, "below": 825, "ob": 6034, "fd": 37005, "fs": 30227, "ad": 34816, "as": 30781}, {"city": "Cluj-Napoca", "couriers": 1638, "orders": 257461, "below": 775, "ob": 6821, "fd": 18667, "fs": 12303, "ad": 18752, "as": 11642}, {"city": "Constanta", "couriers": 780, "orders": 84521, "below": 125, "ob": 1053, "fd": 5664, "fs": 3682, "ad": 5820, "as": 3577}, {"city": "Iasi", "couriers": 710, "orders": 72940, "below": 191, "ob": 1433, "fd": 5651, "fs": 2799, "ad": 4916, "as": 3093}, {"city": "Craiova", "couriers": 562, "orders": 49263, "below": 77, "ob": 586, "fd": 3724, "fs": 2124, "ad": 3468, "as": 1817}, {"city": "Timisoara", "couriers": 730, "orders": 44331, "below": 238, "ob": 1767, "fd": 3474, "fs": 2243, "ad": 3069, "as": 1827}, {"city": "Brasov", "couriers": 527, "orders": 43465, "below": 90, "ob": 574, "fd": 3170, "fs": 1849, "ad": 3222, "as": 1938}, {"city": "Oradea", "couriers": 412, "orders": 31213, "below": 38, "ob": 262, "fd": 2514, "fs": 1422, "ad": 2150, "as": 1122}];
+var czCityData = [{"city": "Prague", "couriers": 2470, "orders": 249897, "below": 2598, "ob": 20380, "fd": 17887, "fs": 8033, "ad": 17410, "as": 7853}, {"city": "Brno", "couriers": 574, "orders": 41804, "below": 855, "ob": 6456, "fd": 3077, "fs": 1342, "ad": 3114, "as": 1306}, {"city": "Plzen", "couriers": 365, "orders": 27526, "below": 173, "ob": 1314, "fd": 2003, "fs": 931, "ad": 1860, "as": 805}, {"city": "Ostrava", "couriers": 368, "orders": 21351, "below": 187, "ob": 1023, "fd": 1537, "fs": 656, "ad": 1440, "as": 633}, {"city": "Olomouc", "couriers": 287, "orders": 13880, "below": 172, "ob": 1021, "fd": 1079, "fs": 527, "ad": 971, "as": 497}, {"city": "Hradec Kralove", "couriers": 140, "orders": 8168, "below": 34, "ob": 195, "fd": 623, "fs": 274, "ad": 573, "as": 257}, {"city": "Zlin", "couriers": 129, "orders": 7916, "below": 134, "ob": 669, "fd": 665, "fs": 348, "ad": 578, "as": 342}, {"city": "Decin", "couriers": 84, "orders": 6110, "below": 12, "ob": 56, "fd": null, "fs": null, "ad": null, "as": null}];
+
+function downloadFleetCSV(marketId) {
+  var data = marketId==='romania' ? roFleetData : czFleetData;
+  var thr = marketId==='romania' ? '80%' : '65%';
+  var csv = 'Fleet,Total couriers,Below '+thr+',% below,Total orders,Orders from flagged,Fleet avg AR\n';
+  for(var i=0;i<data.length;i++) {
+    var f=data[i];
+    csv += '"'+f.name+'",'+f.total+','+f.below+','+(f.below/f.total*100).toFixed(1)+'%,'+f.orders+','+f.ob+','+f.ar+'%\n';
+  }
+  var blob = new Blob([csv], {type:'text/csv'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = marketId+'_fleet_view_w26.csv';
+  a.click();
+}
+
+function downloadCityCSV(marketId) {
+  var data = marketId==='romania' ? roCityData : czCityData;
+  var csv = 'City,Active couriers,Orders 4w,Below threshold,Orders from flagged,W26 forecast demand,W26 forecast supply,W26 actual demand,W26 actual supply\n';
+  for(var i=0;i<data.length;i++) {
+    var c=data[i];
+    csv += '"'+c.city+'",'+c.couriers+','+c.orders+','+c.below+','+c.ob+','+(c.fd||'')+','+(c.fs||'')+','+(c.ad||'')+','+(c["as"]||'')+'\n';
+  }
+  var blob = new Blob([csv], {type:'text/csv'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = marketId+'_city_drilldown.csv';
+  a.click();
+}
+
 </script></body></html>

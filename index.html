@@ -100,8 +100,8 @@ h3.subsection{font-size:15px;font-weight:600;margin:16px 0 8px}
 
 <div class="stats">
 <div class="stat"><div class="stat-val">16</div><div class="stat-label">Markets covered</div></div>
-<div class="stat"><div class="stat-val green">4</div><div class="stat-label">Group A (Class 1)</div></div>
-<div class="stat"><div class="stat-val orange">11</div><div class="stat-label">Groups B/C/D (Class 2)</div></div>
+<div class="stat"><div class="stat-val green">5</div><div class="stat-label">Group A</div></div>
+<div class="stat"><div class="stat-val orange">10</div><div class="stat-label">Groups B/C/D (Class 2)</div></div>
 <div class="stat"><div class="stat-val purple">1</div><div class="stat-label">Group E (Class 3)</div></div>
 <div class="stat"><div class="stat-val blue">16</div><div class="stat-label">Audit responses</div></div>
 </div>
@@ -118,7 +118,7 @@ h3.subsection{font-size:15px;font-weight:600;margin:16px 0 8px}
 <tr><td><b>Latvia</b></td><td><span class="gc">C</span></td><td>2</td><td><span class="tw">Yes</span></td><td>Independent-only</td><td class="tw">High</td><td class="tn">No</td><td>30%</td><td>Manual</td><td><span class="tw">Legal red light on AR rewards</span> &mdash; earnings deductions for multiapping (recommend stopping)</td></tr>
 <tr><td><b>Czech Republic</b></td><td><span class="gd">D</span></td><td>2</td><td><span class="tw">Yes</span></td><td>Mixed</td><td class="tw">High</td><td class="tn">No</td><td>10%/40%</td><td>Fully automated</td><td><span class="tw">Partial constraint</span> &mdash; independent I&#268;O couriers cannot be blocked for AR</td></tr>
 <tr><td><b>Lithuania</b></td><td><span class="gd">D</span></td><td>2</td><td><span class="tw">Yes</span></td><td>Mixed</td><td class="tw">High</td><td class="tn">No</td><td>40%</td><td>Fully automated</td><td><span class="tw">Earnings deduction</span> &mdash; deducting earnings for multiapping (recommend stopping)</td></tr>
-<tr><td><b>Georgia</b></td><td><span class="gd">D</span></td><td>2</td><td>No</td><td>Mixed</td><td class="tw">High</td><td class="tn">No</td><td>60%</td><td>Partially automated</td><td><span style="color:#8A4D00;font-weight:600">GM risk acceptance</span> &mdash; GM aware and accepts risk of high AR + immediate terminations</td></tr>
+<tr><td><b>Georgia</b></td><td><span class="ga">A</span></td><td>2</td><td>No</td><td>Mixed</td><td class="tw">High</td><td class="tn">No</td><td>60%</td><td>Partially automated</td><td><span style="color:#8A4D00;font-weight:600">GM risk acceptance</span> &mdash; GM aware and accepts risk of high AR + immediate terminations</td></tr>
 <tr><td><b>Cyprus</b></td><td><span class="gd">D</span></td><td>2</td><td><span class="tw">Yes</span></td><td>Mixed</td><td class="tw">High</td><td class="tn">No</td><td>80%</td><td>Partially automated</td><td><span style="color:#888">Market-specific</span> &mdash; high AR by default, blocks fleet couriers with immediate termination</td></tr>
 <tr><td><b>Malta</b></td><td><span class="gd">D</span></td><td>2</td><td><span class="tw">Yes</span></td><td>Mixed</td><td class="tw">High</td><td class="tn">No</td><td>Fleet-level</td><td>N/A</td><td><span class="tw">Legal constraint</span> &mdash; cannot use courier score (composite metrics), cannot block directly unless fraud. Trying to get AR blocking approval</td></tr>
 <tr><td><b>Slovakia</b></td><td><span class="gd">D</span></td><td>2</td><td><span class="tw">Yes</span></td><td>Mixed</td><td class="tw">High</td><td class="tn">No</td><td>30% (fleet first)</td><td>Partially automated</td><td><span style="color:#888">Fleet-first approach</span></td></tr>
@@ -161,6 +161,7 @@ h3.subsection{font-size:15px;font-weight:600;margin:16px 0 8px}
 <span class="grp-market" style="background:#EAF3DE;border-color:#B0D8B0;color:#2A5A2A">Ghana &#10003;</span>
 <span class="grp-market" style="background:#EAF3DE;border-color:#B0D8B0;color:#2A5A2A">Kenya &#10003;</span>
 <span class="grp-market" style="background:#EAF3DE;border-color:#B0D8B0;color:#2A5A2A">Ukraine &#10003;</span>
+<span class="grp-market" style="background:#EAF3DE;border-color:#B0D8B0;color:#2A5A2A">Georgia &#10003;</span>
 </div>
 <div class="grp-section-title">Permissible actions</div>
 <div class="action-row"><span class="action-yes">YES</span> AR blocking with automated execution</div>
@@ -259,7 +260,6 @@ h3.subsection{font-size:15px;font-weight:600;margin:16px 0 8px}
 <div class="grp-markets">
 <span class="grp-market" style="background:#FCEEE0;border-color:#E8C0A0;color:#7A3500">Czech Republic &#10003;</span>
 <span class="grp-market" style="background:#FCEEE0;border-color:#E8C0A0;color:#7A3500">Lithuania &#10003;</span>
-<span class="grp-market" style="background:#FCEEE0;border-color:#E8C0A0;color:#7A3500">Georgia &#10003;</span>
 <span class="grp-market" style="background:#FCEEE0;border-color:#E8C0A0;color:#7A3500">Cyprus &#10003;</span>
 <span class="grp-market" style="background:#FCEEE0;border-color:#E8C0A0;color:#7A3500">Malta &#10003;</span>
 <span class="grp-market" style="background:#FCEEE0;border-color:#E8C0A0;color:#7A3500">Slovakia &#10003;</span>
@@ -276,18 +276,15 @@ h3.subsection{font-size:15px;font-weight:600;margin:16px 0 8px}
 <div>
 <div class="grp-section-title">Key risks and gaps</div>
 <div class="risk-row"><span class="risk-dot">&#9679;</span> Cyprus AR threshold 80% with immediate termination for fleet couriers &mdash; most aggressive in entire portfolio. Market-specific: high AR by default</div>
-<div class="risk-row"><span class="risk-dot">&#9679;</span> Georgia AR threshold 60% + immediate termination for multiapping without warnings &mdash; <b>GM accepts risk knowingly</b></div>
 <div class="risk-row"><span class="risk-dot">&#9679;</span> Lithuania earnings deduction for multiapping &mdash; recommend stopping</div>
 <div class="risk-row"><span class="risk-dot">&#9679;</span> Czech Republic + Lithuania: fully automated AR blocking, no manual review</div>
 <div class="risk-row"><span class="risk-dot">&#9679;</span> Czech Republic: independent I&#268;O couriers cannot be blocked for AR (only fleet couriers)</div>
-<div class="risk-row"><span class="risk-dot">&#9679;</span> Georgia: immediate termination for 5+ triggers without graduated escalation</div>
 <div class="risk-row"><span class="risk-dot">&#9679;</span> Malta: <b>cannot use courier score</b> &mdash; composite metrics not permissible for restricting activity (informal legal position). Can only block for fraud. Trying to get approval for direct AR blocking below 50%</div>
 <div class="risk-row"><span class="risk-dot">&#9679;</span> Poland: has limitations to blocking. Uses AI + legal guidance matrix. Most complex system (4 AR tiers)</div>
 <div class="grp-section-title" style="margin-top:16px">Calibrated thresholds</div>
 <table class="dt"><thead><tr><th>Market</th><th>AR</th><th>Redispatch</th><th>Delays</th></tr></thead><tbody>
 <tr><td>Czech Republic</td><td class="tb">24.29%</td><td class="tb">33.33%</td><td class="tb">20%</td></tr>
 <tr><td>Lithuania</td><td class="tb">28.57%</td><td class="tb">33.33%</td><td class="tb">20%</td></tr>
-<tr><td>Georgia</td><td class="tb">27.55%</td><td class="tb">33.33%</td><td class="tb">12.33%</td></tr>
 <tr><td>Cyprus</td><td class="tb">28.57%</td><td class="tb">33.33%</td><td class="tb">20%</td></tr>
 <tr><td>Malta</td><td class="tb">28.57%</td><td class="tb">33.33%</td><td class="tb">20%</td></tr>
 <tr><td>Slovakia</td><td class="tb">28.57%</td><td class="tb">33.33%</td><td class="tb">20%</td></tr>
@@ -337,7 +334,7 @@ h3.subsection{font-size:15px;font-weight:600;margin:16px 0 8px}
 <tr><td><b>Cyprus</b></td><td><span class="gd">D</span></td><td>80%</td><td class="tb">28.57%</td><td><span style="color:#6B2D8B;font-weight:600">High value at risk</span><br><span style="font-size:11px;color:#888">51pp of blocking range delivering supply value. Immediate termination escalation adds legal risk. Market-specific: AR naturally high</span></td><td>33.33%</td><td>20%</td><td>Case-based &rarr; 33%</td></tr>
 <tr><td><b>Bulgaria</b></td><td><span class="gb">B</span></td><td>70%</td><td class="tb">28.57%</td><td><span style="color:#6B2D8B;font-weight:600">High value at risk</span><br><span style="font-size:11px;color:#888">41pp of blocking range. Fleet-mediated = lower direct risk. Supply impact analysis needed before reducing</span></td><td>33.33%</td><td>20%</td><td>N/A &rarr; 33%</td></tr>
 <tr><td><b>Romania</b></td><td><span class="gb">B</span></td><td>60%</td><td class="tb">28.57%</td><td><span style="color:#6B2D8B;font-weight:600">High value at risk</span><br><span style="font-size:11px;color:#888">31pp of blocking range. AR improved after blocking was introduced. GM accepted the risk. Supply impact of couriers between 28-60% needs quantification</span></td><td>33.33%</td><td>20%</td><td>N/A &rarr; 33%</td></tr>
-<tr><td><b>Georgia</b></td><td><span class="gd">D</span></td><td>60%</td><td class="tb">27.55%</td><td><span style="color:#6B2D8B;font-weight:600">High value at risk</span><br><span style="font-size:11px;color:#888">32pp of blocking range. GM accepts risk. Non-EU market = less PWD pressure but still Class 2</span></td><td>33.33%</td><td>12.33%</td><td>N/A &rarr; 33%</td></tr>
+<tr><td><b>Georgia</b></td><td><span class="ga">A</span></td><td>60%</td><td class="tb">27.55%</td><td><span style="color:#6B2D8B;font-weight:600">High value at risk</span><br><span style="font-size:11px;color:#888">32pp of blocking range. GM accepts risk. Non-EU, no PWD</span></td><td>33.33%</td><td>12.33%</td><td>N/A &rarr; 33%</td></tr>
 <tr><td><b>Ghana</b></td><td><span class="ga">A</span></td><td>50%</td><td class="tb">28.57%</td><td><span style="color:#C0392B;font-weight:600">Moderate value at risk</span><br><span style="font-size:11px;color:#888">21pp of blocking range. Class 1 = low legal risk. Can maintain higher threshold if supply impact justifies it</span></td><td>33.33%</td><td>20%</td><td>50% &rarr; 33%</td></tr>
 <tr><td><b>Estonia</b></td><td><span class="gc">C</span></td><td>40%</td><td class="tb">28.57%</td><td><span style="color:#8A4D00;font-weight:600">Moderate value at risk</span><br><span style="font-size:11px;color:#888">11pp of blocking range. Independent-only = highest direct exposure. AR improved from 61.8% to 67% with combined blocking + rewards</span></td><td>33.33%</td><td>20%</td><td>N/A &rarr; 33%</td></tr>
 <tr><td><b>Lithuania</b></td><td><span class="gd">D</span></td><td>40%</td><td class="tb">28.57%</td><td><span style="color:#8A4D00;font-weight:600">Moderate value at risk</span><br><span style="font-size:11px;color:#888">11pp of blocking range. Fully automated = higher compliance urgency than the supply question</span></td><td>33.33%</td><td>20%</td><td>N/A &rarr; 33%</td></tr>
@@ -402,7 +399,7 @@ h3.subsection{font-size:15px;font-weight:600;margin:16px 0 8px}
 <div class="esc-card"><div class="esc-title"><span class="gd">D</span> Group D execution</div>
 <div class="esc-item"><span class="esc-bold">Execution:</span> Fleet-first, direct where no fleet</div>
 <div class="esc-item"><span class="esc-bold">Human review:</span> Mandatory from Dec 2026 (EU markets)</div>
-<div class="esc-item"><span class="esc-bold">Automation:</span> Semi-automated for EU, full for non-EU (Georgia)</div>
+<div class="esc-item"><span class="esc-bold">Automation:</span> Semi-automated for EU markets</div>
 <div class="esc-item"><span class="esc-bold">Dual path:</span> Fleet couriers through fleet, independents directly</div>
 <div class="esc-item" style="color:#888;margin-top:6px">Most complex execution. Needs to support both fleet and independent paths simultaneously.</div>
 </div>
@@ -446,7 +443,7 @@ h3.subsection{font-size:15px;font-weight:600;margin:16px 0 8px}
 <tr><td><b>Latvia</b></td><td><span class="gc">C</span></td><td class="tn">No</td><td>&mdash;</td><td>Wanted AR campaigns but <b>legal red light</b></td></tr>
 <tr><td><b>Czech Republic</b></td><td><span class="gd">D</span></td><td class="ty">Yes</td><td>Bonus connected to AR</td><td>Needs legal review for Class 2 compliance</td></tr>
 <tr><td><b>Lithuania</b></td><td><span class="gd">D</span></td><td class="ty">Yes</td><td>Rating campaigns (testing)</td><td>Encouraging thumbs up/down &mdash; in testing phase</td></tr>
-<tr><td><b>Georgia</b></td><td><span class="gd">D</span></td><td class="ty">Yes</td><td>Weekly AR campaign (70% + 1 order)</td><td>Cash bonus + branded raincoat &mdash; 70% threshold may penalize through denial</td></tr>
+<tr><td><b>Georgia</b></td><td><span class="ga">A</span></td><td class="ty">Yes</td><td>Weekly AR campaign (70% + 1 order)</td><td>Cash bonus + branded raincoat &mdash; 70% threshold may penalize through denial</td></tr>
 <tr><td><b>Cyprus</b></td><td><span class="gd">D</span></td><td class="tn">No</td><td>&mdash;</td><td>Uses AI for performance management</td></tr>
 <tr><td><b>Malta</b></td><td><span class="gd">D</span></td><td class="ty">Yes</td><td>+&euro;1/order (retail, fleet)</td><td>Weekly, paid as manual adjustments to fleet</td></tr>
 <tr><td><b>Slovakia</b></td><td><span class="gd">D</span></td><td class="tn">No</td><td>&mdash;</td><td>Monetary rewards and raffles not effective per local team</td></tr>
@@ -613,13 +610,13 @@ h3.subsection{font-size:15px;font-weight:600;margin:16px 0 8px}
 <tr><td><span class="rtag rh">HIGH</span></td><td><b>Cyprus</b></td><td><span class="gd">D</span></td><td>AR threshold of 80% &mdash; most aggressive in entire portfolio.</td><td>Reduce to framework threshold of ~28.57%.</td><td>Q3 2026</td></tr>
 <tr><td><span class="rtag rh">HIGH</span></td><td><b>Bulgaria</b></td><td><span class="gb">B</span></td><td>AR threshold of 70% &mdash; second highest.</td><td>Reduce to framework threshold of ~28.57%.</td><td>Q3 2026</td></tr>
 <tr><td><span class="rtag rh">HIGH</span></td><td><b>Romania</b></td><td><span class="gb">B</span></td><td>AR threshold of 60% &mdash; framework threshold is ~28.57%.</td><td>Phased reduction. Review supply impact.</td><td>Q3 2026</td></tr>
-<tr><td><span class="rtag rh">HIGH</span></td><td><b>Georgia</b></td><td><span class="gd">D</span></td><td>AR threshold 60% + immediate termination for multiapping without warnings.</td><td>Reduce AR, introduce graduated escalation.</td><td>Q3 2026</td></tr>
-<tr><td><span class="rtag rh">HIGH</span></td><td><b>Georgia</b></td><td><span class="gd">D</span></td><td>Immediate termination for 5 other triggers without graduated process.</td><td>Serious: suspend pending investigation. Minor: warning first.</td><td>Q3 2026</td></tr>
+<tr><td><span class="rtag rh">HIGH</span></td><td><b>Georgia</b></td><td><span class="ga">A</span></td><td>AR threshold 60% + immediate termination for multiapping without warnings.</td><td>Reduce AR, introduce graduated escalation.</td><td>Q3 2026</td></tr>
+<tr><td><span class="rtag rh">HIGH</span></td><td><b>Georgia</b></td><td><span class="ga">A</span></td><td>Immediate termination for 5 other triggers without graduated process.</td><td>Serious: suspend pending investigation. Minor: warning first.</td><td>Q3 2026</td></tr>
 <tr><td><span class="rtag rh">HIGH</span></td><td><b>Cyprus</b></td><td><span class="gd">D</span></td><td>Immediate termination for multiapping without prior warnings.</td><td>Introduce graduated process.</td><td>Q3 2026</td></tr>
 <tr><td><span class="rtag rm">MEDIUM</span></td><td><b>Ghana</b></td><td><span class="ga">A</span></td><td>Courier score threshold 50% &mdash; above HQ cap of 33%.</td><td>Align with 33% cap.</td><td>Q3 2026</td></tr>
 <tr><td><span class="rtag rm">MEDIUM</span></td><td><b>Estonia</b></td><td><span class="gc">C</span></td><td>AI-automated AR blocking &mdash; human review gate not confirmed.</td><td>Confirm AI process includes human gate.</td><td>Q3 2026</td></tr>
 <tr><td><span class="rtag rm">MEDIUM</span></td><td><b>Estonia</b></td><td><span class="gc">C</span></td><td>AR reward campaign with 90% threshold &mdash; legally exposed.</td><td>Reframe as volume + quality bonus.</td><td>Q3 2026</td></tr>
-<tr><td><span class="rtag rm">MEDIUM</span></td><td><b>Georgia</b></td><td><span class="gd">D</span></td><td>AR campaigns with 70% threshold as condition.</td><td>Reframe as positive bonus. Review with legal.</td><td>Q3 2026</td></tr>
+<tr><td><span class="rtag rm">MEDIUM</span></td><td><b>Georgia</b></td><td><span class="ga">A</span></td><td>AR campaigns with 70% threshold as condition.</td><td>Reframe as positive bonus. Review with legal.</td><td>Q3 2026</td></tr>
 <tr><td><span class="rtag rm">MEDIUM</span></td><td><b>Multiple</b></td><td><span class="gd">D</span></td><td>No defined unblocking process (Georgia, Latvia, Lithuania, Estonia, Azerbaijan).</td><td>Define and document basic unblocking criteria.</td><td>Q4 2026</td></tr>
 </tbody></table>
 
@@ -635,7 +632,7 @@ h3.subsection{font-size:15px;font-weight:600;margin:16px 0 8px}
 <tr><td><b>Estonia</b></td><td><span class="gc">C</span></td><td>Yes</td><td>Partially automated (AI)</td><td>Not confirmed</td><td style="color:#8A4D00;font-weight:600">Borderline &mdash; confirm AI gate</td></tr>
 <tr><td><b>Czech Republic</b></td><td><span class="gd">D</span></td><td>Yes</td><td>Fully automated</td><td>No</td><td class="tw">No &mdash; review queue needed</td></tr>
 <tr><td><b>Lithuania</b></td><td><span class="gd">D</span></td><td>Yes</td><td>Fully automated</td><td>No</td><td class="tw">No &mdash; review queue needed</td></tr>
-<tr><td><b>Georgia</b></td><td><span class="gd">D</span></td><td>No (non-EU)</td><td>Partially automated</td><td>Not specified</td><td class="tn">N/A &mdash; non-EU</td></tr>
+<tr><td><b>Georgia</b></td><td><span class="ga">A</span></td><td>No (non-EU)</td><td>Partially automated</td><td>Not specified</td><td class="tn">N/A &mdash; non-EU</td></tr>
 <tr><td><b>Portugal</b></td><td><span class="ge">E</span></td><td>Yes</td><td>N/A</td><td>N/A</td><td class="tn">N/A &mdash; no blocking</td></tr>
 </tbody></table>
 </div>
